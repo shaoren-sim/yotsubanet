@@ -143,8 +143,14 @@ def preprocess_image(
         image = crop_faces(image, coor_list[0])
         for func in preprocessing_function_list:
             image = func(image)
-        image.save(image_path)
-        print(f'{image_path} replaced.')
+        try:
+            image.save(image_path)
+            print(f'{image_path} replaced.')
+        except Exception as e:
+            print(e)
+            os.remove(image_path)
+            print(f"{image_path} removed.")
+
     # if there is no face detected, skip and delete downloaded image.
     elif len(coor_list) == 0:
         print('No faces detected.')

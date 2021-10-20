@@ -31,6 +31,7 @@ if __name__ == "__main__":
         download_fanart_from_subreddits(
             reddit,
             label,
+            label,
             subreddit,
             filter_thread_flair,
             data_folder="test_data",

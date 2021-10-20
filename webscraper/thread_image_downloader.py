@@ -48,9 +48,9 @@ def download_images_from_thread(
             # Check if quint names are included in link_text
             # print(reddit_link)
 
-            # Assumption 1: If name is in link_text, 
+            # Assumption: If name is in link_text, 
             # can download image and label as character
-            names_in_link_text = re.findall(r"(?=("+'|'.join(labels)+r"))", link_text.lower())
+            names_in_link_text = re.findall(r"(?:(\b"+r'\b|\b'.join(labels)+r"\b))", link_text.lower())
             
             if len(names_in_link_text) == 1:    # ignore if 2 names are included
                 # print(link_text)
@@ -147,14 +147,29 @@ def download_fanart_from_subreddits(
         if not os.path.isdir(folder_for_no_detected_faces):
             os.mkdir(folder_for_no_detected_faces)
     
-    print("label:", label)
-    current_img_count = len([name for name in os.listdir(os.path.join(data_folder, label)) if os.path.isfile(os.path.join(os.path.join(data_folder, label), name))])
-    print(f'{label} images: {current_img_count}/{images_required}')
-
-    if thread_flair is not None:
-        posts = [post for post in list(subreddit.search(f"{search_string}", sort='top', limit=None)) if post.link_flair_text == thread_flair]
+    if label is not None:
+        bypass_check_flag = False
+        print("label:", label)
+        folder_to_save = os.path.join(data_folder, label)
+        current_img_count = len([name for name in os.listdir(folder_to_save) if os.path.isfile(os.path.join(folder_to_save, name))])
+        print(f'{label} images: {current_img_count}/{images_required}')
     else:
-        posts = [post for post in list(subreddit.search(f"{search_string}", sort='top', limit=None))]
+        label = ""
+        print("No label is provided, downloading images to multi-face folder.")
+        # folder_to_save = os.path.join(data_folder, label)
+        bypass_check_flag = True
+
+    if search_string is None:
+        search_string = ""
+        if thread_flair is not None:
+            posts = [post for post in list(subreddit.top(limit=None)) if post.link_flair_text == thread_flair]
+        else:
+            posts = [post for post in list(subreddit.top(limit=None))]
+    else:
+        if thread_flair is not None:
+            posts = [post for post in list(subreddit.search(f"{search_string}", sort='top', limit=None)) if post.link_flair_text == thread_flair]
+        else:
+            posts = [post for post in list(subreddit.search(f"{search_string}", sort='top', limit=None))]
 
     image_posts = [post for post in posts if post.url.split('.')[-1] in ['jpg', 'png', 'jpeg']]
     print(len(image_posts), "image posts.")
@@ -162,26 +177,32 @@ def download_fanart_from_subreddits(
         print(thread.title, thread.link_flair_text)
         print(thread.url)
 
-        download_image(thread.url, os.path.join(
-            data_folder, 
-            label, 
-            f'{strip_and_lowercase(thread.title)}{thread.url[-4:]}'))
-        preprocess_image(os.path.join(
+        try:
+            download_image(thread.url, os.path.join(
                 data_folder, 
                 label, 
-                f'{strip_and_lowercase(thread.title)}{thread.url[-4:]}'
-            ),
-            preprocessing_function_list, 
-            save_multiple_faces, 
-            folder_for_multiple_faces, 
-            delete_images_with_no_faces, 
-            folder_for_no_detected_faces)
-        if len([name for name in os.listdir(os.path.join(data_folder, label)) if os.path.isfile(os.path.join(os.path.join(data_folder, label), name))]) >= images_required:
-            break
+                f'{strip_and_lowercase(thread.title)}{thread.url[-4:]}'))
+            preprocess_image(os.path.join(
+                    data_folder, 
+                    label, 
+                    f'{strip_and_lowercase(thread.title)}{thread.url[-4:]}'
+                ),
+                preprocessing_function_list, 
+                save_multiple_faces, 
+                folder_for_multiple_faces, 
+                delete_images_with_no_faces, 
+                folder_for_no_detected_faces)
+        except Exception as e:
+            print(e)
+            continue
+        if not bypass_check_flag:
+            if len([name for name in os.listdir(folder_to_save) if os.path.isfile(os.path.join(folder_to_save, name))]) >= images_required:
+                break
     print('='*12)
 
-    if len([name for name in os.listdir(os.path.join(data_folder, label)) if os.path.isfile(os.path.join(os.path.join(data_folder, label), name))]) >= images_required:
-        pass
+    if not bypass_check_flag:
+        if len([name for name in os.listdir(folder_to_save) if os.path.isfile(os.path.join(folder_to_save, name))]) >= images_required:
+            pass
 
     gallery_posts = [post for post in posts if "www.reddit.com/gallery" in post.url]
     print(len(gallery_posts), "gallery posts.")
@@ -194,20 +215,25 @@ def download_fanart_from_subreddits(
             image_url = largest_image['u']
             print(image_url)
 
-            download_image(image_url, os.path.join(
-                data_folder, 
-                label, 
-                f"{strip_and_lowercase(thread.title)}_{ind}.{image_url.split('?')[0].split('.')[-1]}"))
-            preprocess_image(os.path.join(
+            try:
+                download_image(image_url, os.path.join(
                     data_folder, 
                     label, 
-                    f"{strip_and_lowercase(thread.title)}_{ind}.{image_url.split('?')[0].split('.')[-1]}"
-                ),
-                preprocessing_function_list, 
-                save_multiple_faces, 
-                folder_for_multiple_faces, 
-                delete_images_with_no_faces, 
-                folder_for_no_detected_faces)
-        if len([name for name in os.listdir(os.path.join(data_folder, label)) if os.path.isfile(os.path.join(os.path.join(data_folder, label), name))]) >= images_required:
-            break
+                    f"{strip_and_lowercase(thread.title)}_{ind}.{image_url.split('?')[0].split('.')[-1]}"))
+                preprocess_image(os.path.join(
+                        data_folder, 
+                        label, 
+                        f"{strip_and_lowercase(thread.title)}_{ind}.{image_url.split('?')[0].split('.')[-1]}"
+                    ),
+                    preprocessing_function_list, 
+                    save_multiple_faces, 
+                    folder_for_multiple_faces, 
+                    delete_images_with_no_faces, 
+                    folder_for_no_detected_faces)
+            except Exception as e:
+                print(e)
+                continue
+        if not bypass_check_flag:
+            if len([name for name in os.listdir(folder_to_save) if os.path.isfile(os.path.join(folder_to_save, name))]) >= images_required:
+                break
     print('='*12)
