@@ -12,7 +12,7 @@ def main_training_loop(
     validation_set_factor: float = 0.1,
     batch_size: int = 16,
     checkpoint_dir: str = "checkpointing",
-    model=models.resnet18, 
+    model=models.resnet18(num_classes=5), 
     optimizer=torch.optim.AdamW, 
     criterion=torch.nn.CrossEntropyLoss(),
     device="cuda:0"
@@ -27,7 +27,8 @@ def main_training_loop(
     valid_loader = DataLoader(valid_set, batch_size, shuffle=True)
 
     # Initialize model and optimizer.
-    model = model(num_classes=len(labels)).to(device)
+    model = model.to(device)
+    # print(model)
     optimizer = optimizer(model.parameters(), lr=0.001, eps=0.1)
     print("Model and optimizer initialized")
 

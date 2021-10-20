@@ -117,6 +117,7 @@ def download_images_from_thread(
 
 def download_fanart_from_subreddits(
     prawler,
+    search_string: str,
     label: str,
     subreddit: praw.models.subreddits.Subreddits,
     thread_flair: str,
@@ -150,7 +151,10 @@ def download_fanart_from_subreddits(
     current_img_count = len([name for name in os.listdir(os.path.join(data_folder, label)) if os.path.isfile(os.path.join(os.path.join(data_folder, label), name))])
     print(f'{label} images: {current_img_count}/{images_required}')
 
-    posts = [post for post in list(subreddit.search(f"{label}", sort='top', limit=None)) if post.link_flair_text == thread_flair]
+    if thread_flair is not None:
+        posts = [post for post in list(subreddit.search(f"{search_string}", sort='top', limit=None)) if post.link_flair_text == thread_flair]
+    else:
+        posts = [post for post in list(subreddit.search(f"{search_string}", sort='top', limit=None))]
 
     image_posts = [post for post in posts if post.url.split('.')[-1] in ['jpg', 'png', 'jpeg']]
     print(len(image_posts), "image posts.")
