@@ -78,7 +78,8 @@ class RedditPrawler():
     def search_for_threads(
         self, 
         subreddit_name, 
-        search_string
+        search_string,
+        thread_flair: str = None,
         ):
         if type(subreddit_name) is praw.models.reddit.subreddit.Subreddit:
             subreddit = subreddit_name
@@ -87,6 +88,8 @@ class RedditPrawler():
         else:
             raise ValueError("subreddit name must be string or a praw.models.reddit.subreddit.Subreddit object.")
         results = list(subreddit.search(search_string))
+        if thread_flair is not None:
+            results = [post for post in results if post.link_flair_text == thread_flair]
         print(f"{len(results)} threads found.")
 
         return results

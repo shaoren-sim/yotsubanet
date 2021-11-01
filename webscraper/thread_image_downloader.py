@@ -6,13 +6,14 @@ import requests
 import datetime
 from webscraper.downloaders import download_image
 from webscraper.face_extract import preprocess_image
-from webscraper.reddit_scraper import extract_links_from_comments, strip_and_lowercase
+from webscraper.reddit_scraper import RedditPrawler, extract_links_from_comments, strip_and_lowercase
 from webscraper.face_extract import resize_image_to_square
 import re
+from multiprocessing import Pool
 
 def download_images_from_thread(
     discussion_thread: praw.models.reddit.submission.Submission,
-    labels: list,
+    label: str,
     data_folder: str = "data",
     preprocessing_function_list: list = [resize_image_to_square], 
     save_multiple_faces: bool = True, 
@@ -50,16 +51,14 @@ def download_images_from_thread(
 
             # Assumption: If name is in link_text, 
             # can download image and label as character
-            names_in_link_text = re.findall(r"(?:(\b"+r'\b|\b'.join(labels)+r"\b))", link_text.lower())
-            
-            if len(names_in_link_text) == 1:    # ignore if 2 names are included
-                # print(link_text)
-                label = names_in_link_text[0]
+            # names_in_link_text = re.findall(r"(?:(\b"+r'\b|\b'.join(labels)+r"\b))", link_text.lower())
+            names_in_link_text = re.findall(r"(?:(\b"+label+r"\b))", link_text.lower())
+            # print(r"(?:(\b"+label+r"\b))")
+            # check if url contains '.jpg' or '.png' extension
+            # print(url)
 
-                # check if url contains '.jpg' or '.png' extension
-                # print(url)
-
-                # check returned mime-type just in case it is malicious
+            # check returned mime-type just in case it is malicious
+            if len(names_in_link_text) > 0:
                 if requests.get(url, allow_redirects=False).status_code == 200:
                     if requests.get(url, allow_redirects=False).headers['Content-Type'] == "text/html":
                         if 'imgur.com/a/' in url:
@@ -237,3 +236,41 @@ def download_fanart_from_subreddits(
             if len([name for name in os.listdir(folder_to_save) if os.path.isfile(os.path.join(folder_to_save, name))]) >= images_required:
                 break
     print('='*12)
+
+def run_job(
+    reddit: RedditPrawler,
+    job: tuple,
+    labels: list,
+    data_folder: str = "data",
+    save_multiple_faces: bool = True, 
+    folder_for_multiple_faces: str = "multiple_faces", 
+    delete_images_with_no_faces: bool = True,
+    folder_for_no_detected_faces: str = "no_detected_faces",
+    extraneous_data_folder: str = "extra_unlabelled_data",
+    preprocessing_function_list: list = [resize_image_to_square], 
+):
+    jobtype, sub, search_string, thread_flair, label = job
+
+    if jobtype == "comment_links":
+        subreddit = reddit.subreddit(sub)
+        threads = reddit.search_for_threads(subreddit, search_string, thread_flair)
+
+        for thread in threads:
+            print(thread.title)
+            download_images_from_thread(
+                thread, 
+                label, 
+                data_folder, 
+                delete_images_with_no_faces=True, 
+                folder_for_multiple_faces=folder_for_multiple_faces
+            )
+    
+    if jobtype == "subreddit_posts":
+        subreddit = reddit.subreddit(sub)
+        download_fanart_from_subreddits(
+            reddit,
+            search_string,
+            label,
+            subreddit,
+            thread_flair,
+        )
