@@ -61,8 +61,8 @@ def download_images_from_thread(
                 if requests.get(url, allow_redirects=False).status_code == 200:
                     if requests.get(url, allow_redirects=False).headers['Content-Type'] == "text/html":
                         if 'imgur.com/a/' in url:
-                            downloader = ImgurDownloader(url)
                             try:
+                                downloader = ImgurDownloader(url)
                                 print(f'Album at {url} has {downloader.num_images()} images')
                                 downloaded_album_images = downloader.save_images(os.path.join(data_folder, label))
                             except Exception as e:
