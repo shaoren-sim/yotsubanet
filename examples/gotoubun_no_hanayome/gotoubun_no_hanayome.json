@@ -1,0 +1,116 @@
+{
+    "labels": [
+        "ichika",
+        "nino",
+        "miku",
+        "yotsuba",
+        "itsuki"
+    ],
+    "jobs": [
+        {
+            "TYPE": "comment_links",
+            "SUBREDDIT": "anime",
+            "SEARCH_QUERY": "Go-toubun no Hanayome Episode Discussion",
+            "THREAD_FLAIR": null,
+            "LABEL": "ichika"
+        },
+        {
+            "TYPE": "comment_links",
+            "SUBREDDIT": "anime",
+            "SEARCH_QUERY": "Go-toubun no Hanayome Episode Discussion",
+            "THREAD_FLAIR": null,
+            "LABEL": "nino"
+        },
+        {
+            "TYPE": "comment_links",
+            "SUBREDDIT": "anime",
+            "SEARCH_QUERY": "Go-toubun no Hanayome Episode Discussion",
+            "THREAD_FLAIR": null,
+            "LABEL": "miku"
+        },
+        {
+            "TYPE": "comment_links",
+            "SUBREDDIT": "anime",
+            "SEARCH_QUERY": "Go-toubun no Hanayome Episode Discussion",
+            "THREAD_FLAIR": null,
+            "LABEL": "yotsuba"
+        },
+        {
+            "TYPE": "comment_links",
+            "SUBREDDIT": "anime",
+            "SEARCH_QUERY": "Go-toubun no Hanayome Episode Discussion",
+            "THREAD_FLAIR": null,
+            "LABEL": "itsuki"
+        },
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "IchikaFanclub",
+            "SEARCH_QUERY": "ichika",
+            "THREAD_FLAIR": "Fanart",
+            "LABEL": "ichika"
+        },
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "NinoNakano",
+            "SEARCH_QUERY": "nino",
+            "THREAD_FLAIR": "Fanart",
+            "LABEL": "nino"
+        },
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "MikuNakano",
+            "SEARCH_QUERY": "miku",
+            "THREAD_FLAIR": "KAWAII",
+            "LABEL": "miku"
+        },
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "Yotsubros",
+            "SEARCH_QUERY": "yotsuba",
+            "THREAD_FLAIR": "Fanart",
+            "LABEL": "yotsuba"
+        },
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "ItsukiClassroom",
+            "SEARCH_QUERY": "itsuki",
+            "THREAD_FLAIR": "Fanart",
+            "LABEL": "itsuki"
+        },
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "IchikaFanclub",
+            "SEARCH_QUERY": null,
+            "THREAD_FLAIR": "Fanart",
+            "LABEL": "ichika"
+        },
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "NinoNakano",
+            "SEARCH_QUERY": null,
+            "THREAD_FLAIR": "Fanart",
+            "LABEL": "nino"
+        },
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "MikuNakano",
+            "SEARCH_QUERY": null,
+            "THREAD_FLAIR": "KAWAII",
+            "LABEL": "miku"
+        },
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "Yotsubros",
+            "SEARCH_QUERY": null,
+            "THREAD_FLAIR": "Fanart",
+            "LABEL": "yotsuba"
+        },
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "ItsukiClassroom",
+            "SEARCH_QUERY": null,
+            "THREAD_FLAIR": "Fanart",
+            "LABEL": "itsuki"
+        }
+    ]
+}

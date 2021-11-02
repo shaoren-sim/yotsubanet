@@ -1,5 +1,5 @@
 # %%
-from dataset_cleanup.image_hashing import hamming_distance, perceptual_hash, difference_hash, average_hash
+from webscraper.dataset_cleanup.image_hashing import hamming_distance, perceptual_hash, difference_hash, average_hash
 import os
 import matplotlib.pyplot as plt
 from PIL import Image

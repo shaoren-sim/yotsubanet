@@ -2,7 +2,7 @@
 
 An all-in-one solution for training anime face classification convolutional neural networks by leveraging Reddit webscraping.
 
-# Description and Background
+# Introduction
 Machine learning classifier require a large dataset of labelled data for satisfactory performance. This generally requires established, curated datasets such as [ImageNet](https://www.image-net.org/), [CIFAR-10/CIFAR-100](https://www.cs.toronto.edu/~kriz/cifar.html) or [MNIST](http://yann.lecun.com/exdb/mnist/).
 
 Alternatively, one could use services such as Amazon Mechanical Turk (https://www.mturk.com/), which allows crowdsourced labelling by humans, but this is expensive and beyond the bounds of most toy problems.
@@ -18,6 +18,23 @@ In this project, we leverage Reddit fan communities as a source of labelled data
 We designed a job-based interface for constructing a webscraping routine through Reddit's PRAW API, and include some common dataset cleanup routines that can improve the quality of the dataset
 
 A basic CNN backbone is also provided, and has been validated to work reasonably well on test tasks.
+
+# Install and run
+1. Clone this repository.
+2. Ensure Python 3.6+ is installed.
+3. Navigate to main directory. `$ cd /path/to/cloned/repository`
+4. Install requirements. `$ pip install -r requirements.txt`
+5. Download [lbpcascade_animeface](https://github.com/nagadomi/lbpcascade_animeface) Viola cascade file. `$ wget https://raw.githubusercontent.com/nagadomi/lbpcascade_animeface/master/lbpcascade_animeface.xml`
+6. Set up Reddit credentials at `config/reddit_praw_login_details.py`. 
+6. Configure scraper session JSON with jobs.
+7. Run webscraper. `$ python run_webscraper.py --i /path/to/session/joblist.json --o /path/to/output//dir`
+8. (Recommended) Do manual data cleanup for labelled training data.
+9. Run CNN classifier training.  `$ python run_classifier_training.py`
+10. Test classifier predictions on unlabelled faces. `$ python run_classifier_test.py --model /path/to/model.pth --data /path/to/unlabelled/data`
+
+Sample webscraper session JSON for 五等分の花嫁  *(Gotoubun no Hanayome)* is available under `./examples/gotoubun_no_hanayome/gotoubun_no_hanayome.json`. 
+
+If no arguments are passed to the `run_*.py` commands, example JSON will be executed.
 
 # Features
 The primary component in this package is the Reddit webscraper, which includes the following features:

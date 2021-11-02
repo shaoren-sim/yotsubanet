@@ -17,21 +17,20 @@ def download_images_from_thread(
     data_folder: str = "data",
     preprocessing_function_list: list = [resize_image_to_square], 
     save_multiple_faces: bool = True, 
-    folder_for_multiple_faces: str = "multiple_faces", 
+    folder_for_multiple_faces: str = "extra_unlabelled_data/multiple_faces", 
     delete_images_with_no_faces: bool = True,
-    folder_for_no_detected_faces: str = "no_detected_faces",
+    folder_for_no_detected_faces: str = "extra_unlabelled_data/no_detected_faces",
     extraneous_data_folder: str = "extra_unlabelled_data",
 ):
     if save_multiple_faces:
         if not os.path.isdir(extraneous_data_folder):
             os.mkdir(extraneous_data_folder)
-        folder_for_multiple_faces = os.path.join(extraneous_data_folder, folder_for_multiple_faces)
         if not os.path.isdir(folder_for_multiple_faces):
             os.mkdir(folder_for_multiple_faces)
     if not delete_images_with_no_faces:
         if not os.path.isdir(extraneous_data_folder):
             os.mkdir(extraneous_data_folder)
-        folder_for_no_detected_faces = os.path.join(extraneous_data_folder, folder_for_no_detected_faces)
+        folder_for_no_detected_faces = folder_for_no_detected_faces
         if not os.path.isdir(folder_for_no_detected_faces):
             os.mkdir(folder_for_no_detected_faces)
     
@@ -63,8 +62,12 @@ def download_images_from_thread(
                     if requests.get(url, allow_redirects=False).headers['Content-Type'] == "text/html":
                         if 'imgur.com/a/' in url:
                             downloader = ImgurDownloader(url)
-                            print(f'Album at {url} has {downloader.num_images()} images')
-                            downloaded_album_images = downloader.save_images(os.path.join(data_folder, label))
+                            try:
+                                print(f'Album at {url} has {downloader.num_images()} images')
+                                downloaded_album_images = downloader.save_images(os.path.join(data_folder, label))
+                            except Exception as e:
+                                print(e)
+                                continue
 
                             for img_in_album in downloaded_album_images[0]:
                                 file_path = os.path.join(data_folder, label, img_in_album)
@@ -120,14 +123,14 @@ def download_fanart_from_subreddits(
     label: str,
     subreddit: praw.models.subreddits.Subreddits,
     thread_flair: str,
-    data_folder: str = "data",
-    preprocessing_function_list: list = [resize_image_to_square], 
-    save_multiple_faces: bool = True, 
-    folder_for_multiple_faces: str = "multiple_faces", 
-    delete_images_with_no_faces: bool = True,
-    folder_for_no_detected_faces: str = "no_detected_faces",
-    extraneous_data_folder: str = "extra_unlabelled_data",
     images_required: int = None,
+    data_folder: str = "data",
+    save_multiple_faces: bool = True, 
+    folder_for_multiple_faces: str = "extra_unlabelled_data/multiple_faces", 
+    delete_images_with_no_faces: bool = True,
+    folder_for_no_detected_faces: str = "extra_unlabelled_data/no_detected_faces",
+    extraneous_data_folder: str = "extra_unlabelled_data",
+    preprocessing_function_list: list = [resize_image_to_square], 
 ):
     # If no specified number of images is provided, set no limit.
     if images_required is None:
@@ -136,13 +139,12 @@ def download_fanart_from_subreddits(
     if save_multiple_faces:
         if not os.path.isdir(extraneous_data_folder):
             os.mkdir(extraneous_data_folder)
-        folder_for_multiple_faces = os.path.join(extraneous_data_folder, folder_for_multiple_faces)
         if not os.path.isdir(folder_for_multiple_faces):
             os.mkdir(folder_for_multiple_faces)
     if not delete_images_with_no_faces:
         if not os.path.isdir(extraneous_data_folder):
             os.mkdir(extraneous_data_folder)
-        folder_for_no_detected_faces = os.path.join(extraneous_data_folder, folder_for_no_detected_faces)
+        folder_for_no_detected_faces = folder_for_no_detected_faces
         if not os.path.isdir(folder_for_no_detected_faces):
             os.mkdir(folder_for_no_detected_faces)
     
@@ -240,13 +242,12 @@ def download_fanart_from_subreddits(
 def run_job(
     reddit: RedditPrawler,
     job: tuple,
-    labels: list,
     data_folder: str = "data",
+    extraneous_data_folder: str = "extra_unlabelled_data",
     save_multiple_faces: bool = True, 
     folder_for_multiple_faces: str = "multiple_faces", 
     delete_images_with_no_faces: bool = True,
     folder_for_no_detected_faces: str = "no_detected_faces",
-    extraneous_data_folder: str = "extra_unlabelled_data",
     preprocessing_function_list: list = [resize_image_to_square], 
 ):
     jobtype, sub, search_string, thread_flair, label = job
@@ -261,8 +262,12 @@ def run_job(
                 thread, 
                 label, 
                 data_folder, 
-                delete_images_with_no_faces=True, 
-                folder_for_multiple_faces=folder_for_multiple_faces
+                extraneous_data_folder=extraneous_data_folder,
+                save_multiple_faces=save_multiple_faces,
+                folder_for_multiple_faces=folder_for_multiple_faces,
+                delete_images_with_no_faces=delete_images_with_no_faces, 
+                folder_for_no_detected_faces=folder_for_no_detected_faces,
+                preprocessing_function_list=preprocessing_function_list,
             )
     
     if jobtype == "subreddit_posts":
@@ -273,4 +278,12 @@ def run_job(
             label,
             subreddit,
             thread_flair,
+            images_required=None,
+            data_folder=data_folder,
+            extraneous_data_folder=extraneous_data_folder,
+            save_multiple_faces=save_multiple_faces,
+            folder_for_multiple_faces=folder_for_multiple_faces,
+            delete_images_with_no_faces=delete_images_with_no_faces, 
+            folder_for_no_detected_faces=folder_for_no_detected_faces,
+            preprocessing_function_list=preprocessing_function_list,
         )

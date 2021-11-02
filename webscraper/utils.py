@@ -3,6 +3,20 @@ import PIL
 import matplotlib.pyplot as plt
 import os
 
+def initialize_session_dir(session_dir: str, data_dir_name: str = "data", unlabelled_dir_name: str = "unlabelled_data"):
+    if not os.path.isdir(session_dir):
+        os.mkdir(session_dir)
+    
+    labelled_data_dir = os.path.join(session_dir, data_dir_name)
+    unlabelled_data_dir = os.path.join(session_dir, unlabelled_dir_name)
+
+    if not os.path.isdir(labelled_data_dir):
+        os.mkdir(labelled_data_dir)
+    if not os.path.isdir(unlabelled_data_dir):
+        os.mkdir(unlabelled_data_dir)
+    
+    return session_dir, labelled_data_dir, unlabelled_data_dir
+
 def initialize_data_folder(list_of_labels: list, folder_name: str = "./data"):
     # Initializing dataset storage
     if not os.path.isdir(folder_name):

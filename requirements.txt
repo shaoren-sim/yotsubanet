@@ -1,0 +1,6 @@
+praw
+matplotlib
+torch
+opencv
+Pillow
+imgur-downloader

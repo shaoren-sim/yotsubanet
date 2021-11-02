@@ -6,7 +6,7 @@ import shutil
 
 TARGET_SIZE = 224   # scale image to a square shape of (TARGET_SIZE, TARGET_SIZE). 224 is Resnet's input size.
 
-def detect_faces(filename, save_image=False, show_image=False, cascade_file="lbpcascade_animeface/lbpcascade_animeface.xml"):
+def detect_faces(filename, save_image=False, show_image=False, cascade_file="lbpcascade_animeface.xml"):
     if not os.path.isfile(cascade_file):
         raise RuntimeError("%s: not found" % cascade_file)
 
@@ -27,7 +27,7 @@ def detect_faces(filename, save_image=False, show_image=False, cascade_file="lbp
     cv.waitKey(0)
     cv.imwrite("out.png", image)
 
-def extract_face_coordinates(filename, expand_factor=0, cascade_file="lbpcascade_animeface/lbpcascade_animeface.xml"):
+def extract_face_coordinates(filename, expand_factor=0, cascade_file="lbpcascade_animeface.xml"):
     if not os.path.isfile(cascade_file):
         raise RuntimeError("%s: not found" % cascade_file)
 

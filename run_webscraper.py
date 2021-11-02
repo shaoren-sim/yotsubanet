@@ -1,11 +1,12 @@
 from webscraper.utils import initialize_data_folder, initialize_session_dir
 from config.reddit_praw_login_details import RedditLoginDetails
 from webscraper.reddit_scraper import RedditPrawler
-from webscraper.thread_image_downloader import download_fanart_from_subreddits, download_images_from_thread, run_job
+from webscraper.thread_image_downloader import run_job
 from webscraper.session.parser import extract_labels_and_jobs_from_session
 import os
 from webscraper.dataset_cleanup.image_duplicate_detection import DuplicateDetection
 from multiprocessing import Pool
+import argparse
 
 SESSION_DIR = "goutoubun_no_hanayome"
 DATA_FOLDER = "data"
@@ -13,10 +14,18 @@ UNLABELLED_DATA_FOLDER = "unlabelled_data"
 SESSION_FILE = "webscraper_session/gotoubun_no_hanayome.json"
 PROCESSES = 4
 
-if __name__ == "__main__":
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-i", "--input", dest="session_file", required=False, help="Webscraper joblist JSON.", default=SESSION_FILE)
+    parser.add_argument("-o", "--output", dest="session_dir", required=False, help="Webscraper output folder.", default=SESSION_DIR)
+    args = parser.parse_args()
+
+    session_file = args.session_file
+    session_dir = args.session_dir
+
     # Initializing folder structure
-    labels, jobs = extract_labels_and_jobs_from_session(SESSION_FILE)
-    session_dir, data_dir, unlabelled_data_dir = initialize_session_dir(SESSION_DIR, DATA_FOLDER, UNLABELLED_DATA_FOLDER)
+    labels, jobs = extract_labels_and_jobs_from_session(session_file)
+    session_dir, data_dir, unlabelled_data_dir = initialize_session_dir(session_dir, DATA_FOLDER, UNLABELLED_DATA_FOLDER)
     initialize_data_folder(labels, data_dir)
 
     save_multiple_faces = True
@@ -65,3 +74,6 @@ if __name__ == "__main__":
     dupe_detect.count_images()
     # dupe_detect.inspect_duplicates()
     dupe_detect.delete_duplicates()
+
+if __name__ == "__main__":
+    main()

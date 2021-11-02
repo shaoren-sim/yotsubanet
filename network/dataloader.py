@@ -15,7 +15,7 @@ class LabelFolderDataset(Dataset):
     def __init__(
         self, 
         data_dir, 
-        data_limit=100, 
+        data_limit=None, 
         transform=None
     ):
         self.data_dir = data_dir

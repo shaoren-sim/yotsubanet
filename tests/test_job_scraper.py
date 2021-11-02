@@ -2,7 +2,7 @@ from webscraper.utils import initialize_data_folder
 from config.reddit_praw_login_details import RedditLoginDetails
 from webscraper.reddit_scraper import RedditPrawler
 from webscraper.thread_image_downloader import download_fanart_from_subreddits, download_images_from_thread, run_job
-from webscraper.session_reader import extract_labels_and_jobs_from_session
+from webscraper.session.parser import extract_labels_and_jobs_from_session
 import os
 
 DATA_FOLDER = "data"
