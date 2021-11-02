@@ -96,3 +96,49 @@ class Checkpointing():
         if is_best:
             shutil.copyfile(self.checkpoint_path, os.path.join(self.checkpoint_dir, 'model_best.pth.tar'))
             # print('New best, saving model_best.pth.tar')
+
+# Early Stopping utility
+class EarlyStopping():
+    def __init__(self, mode='min', min_delta=0, patience=20):
+        if mode not in ['min', 'max']:
+            raise ValueError(f"mode must be 'min' or 'max'.")
+        self.mode = mode    # ['min', 'max']
+        self.min_delta = min_delta  # maximum decrease
+        self.best = None    # holder for current best value
+
+        self.patience = patience
+        self.epoch_counter = 0  # counter for patience
+    
+    def step(self, metric):
+        """
+        Increment step by 1 and check best or worse.
+        """
+
+        # First initiation: Set current metric as best.
+        if self.best == None:
+            self.best = metric
+            return False
+        
+        # Trigger early stopping if metrics hit NaN
+        if np.isnan(metric):
+            print(f"Metrics have hit NaN, triggering early stopping.")
+            return True
+        
+        if self.mode == 'min':
+            if metric < self.best - self.min_delta:
+                self.best = metric
+                self.epoch_counter = 0
+            else:
+                self.epoch_counter += 1
+        elif self.mode == 'max':
+            if metric > self.best + self.min_delta:
+                self.best = metric
+                self.epoch_counter = 0
+            else:
+                self.epoch_counter += 1
+            
+        if self.epoch_counter == self.patience:
+            print(f"Patience {self.patience} reached. Early stopping triggered.")
+            return True
+        else:
+            return False

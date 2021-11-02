@@ -3,16 +3,18 @@ from webscraper.dataset_cleanup.image_hashing import hamming_distance, perceptua
 import os
 import matplotlib.pyplot as plt
 from PIL import Image
+import numpy as np
 
 IMAGE_FORMATS = [".png", ".jpg", ".jpeg"]
 
-class DuplicateDetection():
+class DatasetCleanup():
     def __init__(
         self,
         labelled_data_folder: str,
         unlabelled_data_folder: str,
         image_hash_method: str = "dhash",
-        hamming_distance_threshold: int = 7
+        hamming_distance_threshold: int = 7,
+        grayscale_threshold_value: float = 0.005,
     ):
         """Class for duplicate detection and deletion. Wraps around hashing algorithms and plotting function.
 
@@ -37,6 +39,7 @@ class DuplicateDetection():
         self.labelled_data_folder = labelled_data_folder
         self.unlabelled_data_folder = unlabelled_data_folder
         self.hamming_distance_threshold = hamming_distance_threshold
+        self.grayscale_threshold_value = grayscale_threshold_value
     
     def count_images(self):
         """Count images in each folder, based on the class' labelled_data_folder and unlabelled_data_folder arguments.
@@ -123,13 +126,70 @@ class DuplicateDetection():
     def delete_duplicates(self):
         """Wrapper around hashing function, distance metric and duplicate deletion.
         """
-        for folder in os.listdir(self.labelled_data_folder) + [self.unlabelled_data_folder]:
-            file_list = get_images(os.path.join(DATA_DIR, folder))
+        # Labelled data deduplication
+        for folder in os.listdir(self.labelled_data_folder):
+            print(folder)
+            file_list = get_images(os.path.join(self.labelled_data_folder, folder))
             file_hash_dict = generate_hash_dict(file_list, self.image_hash_method)
             print(len(file_hash_dict), "total images.")
             duplicate_dict = get_duplicates_of_files(file_hash_dict)
             print(len(duplicate_dict), "duplicate images.")
             delete_duplicates(duplicate_dict)
+        # Unlabelled data deduplication
+        print(f"Unlabelled data: {self.unlabelled_data_folder}")
+        file_list = get_images(self.unlabelled_data_folder)
+        file_hash_dict = generate_hash_dict(file_list, self.image_hash_method)
+        print(len(file_hash_dict), "total images.")
+        duplicate_dict = get_duplicates_of_files(file_hash_dict)
+        print(len(duplicate_dict), "duplicate images.")
+        delete_duplicates(duplicate_dict)
+
+    def preview_grayscale(self):
+        """Preview grayscale images determined by pixel threshold test"""
+        grayscale_list = []
+        for folder in os.listdir(self.labelled_data_folder):
+            print(folder)
+            file_list = get_images(os.path.join(self.labelled_data_folder, folder))
+            grayscale_list.append([img for img in file_list if is_grayscale(img, self.grayscale_threshold_value)])
+        # Unlabelled data deduplication
+        print(f"Unlabelled data: {self.unlabelled_data_folder}")
+        file_list = get_images(self.unlabelled_data_folder)
+        grayscale_list.append([img for img in file_list if is_grayscale(img, self.grayscale_threshold_value)])
+        
+        # Flatten list of grayscale images
+        grayscale_list = [val for sublist in grayscale_list for val in sublist]
+        print(len(grayscale_list), "grayscale images.")
+
+        fig, ax = plt.subplots(len(grayscale_list) // 10, 10)
+        fig.set_figheight((len(grayscale_list) // 10) * 3)
+        fig.set_figwidth(25)
+
+        for ind, a in enumerate(ax.flat):
+            image_to_eval_fn = grayscale_list[ind]
+            image_to_eval = Image.open(os.path.join(image_to_eval_fn)).convert('RGB')
+            a.imshow(image_to_eval)
+            a.axis('off')
+        plt.tight_layout()
+        plt.show()
+    
+    def remove_grayscale(self):
+        """Find and remove grayscale images.
+        """
+        grayscale_list = []
+        for folder in os.listdir(self.labelled_data_folder):
+            print(folder)
+            file_list = get_images(os.path.join(self.labelled_data_folder, folder))
+            grayscale_list.append([img for img in file_list if is_grayscale(img, self.grayscale_threshold_value)])
+        # Unlabelled data deduplication
+        print(f"Unlabelled data: {self.unlabelled_data_folder}")
+        file_list = get_images(self.unlabelled_data_folder)
+        grayscale_list.append([img for img in file_list if is_grayscale(img, self.grayscale_threshold_value)])
+        
+        # Flatten list of grayscale images
+        grayscale_list = [val for sublist in grayscale_list for val in sublist]
+        print(len(grayscale_list), "grayscale images.")
+        for grayscale_img in grayscale_list:
+            os.remove(grayscale_img)
 
 def get_images(data_dir):
     """Walks across full data folder and obtains filepath of all images."""
@@ -182,15 +242,46 @@ def delete_duplicates(dictionary_of_duplicates: dict):
                 except FileNotFoundError:
                     continue
 
+def is_grayscale(img_path: str, threshold: float = 0.005):
+    img = Image.open(img_path)
+
+    ### splitting b,g,r channels
+    channels = img.split()
+    if len(channels) == 4:
+        r, g, b, a = channels
+        r = np.array(r)
+        g = np.array(g)
+        b = np.array(b)
+    elif len(channels) == 3:
+        r, g, b = channels
+        r = np.array(r)
+        g = np.array(g)
+        b = np.array(b)
+    elif len(channels) == 1:
+        # Is grayscale
+        return True
+
+    ### getting differences between per-channel pixels
+    r_g = np.sum(np.abs(r - g))
+    r_b = np.sum(np.abs(r - b))
+    g_b = np.sum(np.abs(g - b))
+
+    ### summing differences in channels
+    diff_sum = np.sum(r_g + r_b + g_b)
+
+    ### finding ratio of diff_sum with respect to size of image
+    ratio = diff_sum / get_num_pixels(img)
+    if ratio > threshold:
+        return False
+    else:
+        return True
+
+def get_num_pixels(img: Image):
+    width, height = img.size
+    return width*height
+
 if __name__ == "__main__":
-    DATA_DIR = "/home/shaoren/Desktop/yotsubanet/data"
-
-    dupe_detect = DuplicateDetection(
-        DATA_DIR,
-        "/home/shaoren/Desktop/yotsubanet/extra_unlabelled_data/multiple_faces",
-    )
-
-    dupe_detect.count_images()
-    dupe_detect.inspect_duplicates()
+    bw_img_path = '/home/shaoren/Desktop/yotsubanet/goutoubun_no_hanayome/data/miku/daily_miku_49.png'
+    print(is_grayscale(bw_img_path))
 
     # dupe_detect.delete_duplicates()

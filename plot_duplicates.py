@@ -1,9 +1,9 @@
 # %%
-from dataset_cleanup.image_duplicate_detection import DuplicateDetection
+from webscraper.dataset_cleanup.image_duplicate_detection import DatasetCleanup
 
 DATA_DIR = "/home/shaoren/Desktop/yotsubanet/data"
 
-dupe_detect = DuplicateDetection(
+dupe_detect = DatasetCleanup(
     DATA_DIR,
     "/home/shaoren/Desktop/yotsubanet/extra_unlabelled_data/multiple_faces",
 )

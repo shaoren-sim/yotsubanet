@@ -11,6 +11,10 @@ from webscraper.face_extract import resize_image_to_square
 import re
 from multiprocessing import Pool
 
+# Tag for filtering NSFW content using submission.over_18 flag filtering.
+# Tentatively hard coded, but can be toggled if required.
+FILTER_NSFW = True
+
 def download_images_from_thread(
     discussion_thread: praw.models.reddit.submission.Submission,
     label: str,
@@ -21,7 +25,7 @@ def download_images_from_thread(
     delete_images_with_no_faces: bool = True,
     folder_for_no_detected_faces: str = "extra_unlabelled_data/no_detected_faces",
     extraneous_data_folder: str = "extra_unlabelled_data",
-):
+    ):
     if save_multiple_faces:
         if not os.path.isdir(extraneous_data_folder):
             os.mkdir(extraneous_data_folder)
@@ -171,6 +175,10 @@ def download_fanart_from_subreddits(
             posts = [post for post in list(subreddit.search(f"{search_string}", sort='top', limit=None)) if post.link_flair_text == thread_flair]
         else:
             posts = [post for post in list(subreddit.search(f"{search_string}", sort='top', limit=None))]
+        
+    # NSFW post filtering
+    if FILTER_NSFW:
+        posts = [post for post in posts if post.over_18 == False]
 
     image_posts = [post for post in posts if post.url.split('.')[-1] in ['jpg', 'png', 'jpeg']]
     print(len(image_posts), "image posts.")

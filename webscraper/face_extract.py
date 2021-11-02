@@ -23,11 +23,11 @@ def detect_faces(filename, save_image=False, show_image=False, cascade_file="lbp
     for (x, y, w, h) in faces:
         cv.rectangle(image, (x, y), (x + w, y + h), (0, 0, 255), 2)
 
-    cv.imshow(image)
+    cv.imshow("face", image)
     cv.waitKey(0)
-    cv.imwrite("out.png", image)
+    # cv.imwrite("out.png", image)
 
-def extract_face_coordinates(filename, expand_factor=0, cascade_file="lbpcascade_animeface.xml"):
+def extract_face_coordinates(filename, expand_factor=10, cascade_file="lbpcascade_animeface.xml"):
     if not os.path.isfile(cascade_file):
         raise RuntimeError("%s: not found" % cascade_file)
 
