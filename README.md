@@ -1,4 +1,4 @@
-# yotsuba-net
+# yotsubanet
 
 An all-in-one solution for training anime face classification models by leveraging Reddit webscraping.
 
@@ -28,7 +28,11 @@ A complete CNN backbone (Resnet18) is also provided, and has been validated to w
 
 5. Download [lbpcascade_animeface](https://github.com/nagadomi/lbpcascade_animeface) HAAR cascade file. 
 
+    - On Linux
+
     `$ wget https://raw.githubusercontent.com/nagadomi/lbpcascade_animeface/master/lbpcascade_animeface.xml`
+    
+    - On Windows, right click "Save Link As" [lbpcascade_animeface.xml](https://raw.githubusercontent.com/nagadomi/lbpcascade_animeface/master/lbpcascade_animeface.xml) and place `lbpcascade_animeface.xml` in the main yotsubanet directory.
 
 6. Set up Reddit credentials at `config/reddit_praw_login_details.py` by creating a script app at [https://old.reddit.com/prefs/apps/](https://old.reddit.com/prefs/apps/). A working scraper bot agent's credentials are provided by default, but not guaranteed to work.
 6. Configure custom scraper session JSON with jobs. See **Configuring Job JSON** section for details.
