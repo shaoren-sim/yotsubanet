@@ -25,7 +25,6 @@ import urllib.error
 import urllib.parse
 import urllib.request
 import unicodedata
-import click
 
 
 __doc__ = """
@@ -411,72 +410,3 @@ def slugify(value):
     value = unicodedata.normalize('NFKD', value).encode('ascii', 'ignore')
     value = str(re.sub(r'[^\w\s\-.)(]', '', value.decode('ascii')).strip())
     return value
-
-
-@click.command()
-@click.option(
-    '--print-only', default=False, is_flag=True,
-    help="Print download link only, no download.")
-@click.argument('url', nargs=1, required=False)
-@click.argument('destination_folder', nargs=1, required=False)
-def main(url, destination_folder, print_only=False):
-    """Quickly and easily download images from Imgur."""
-    if not url:
-        # Print out the help message and exit:
-        print(__doc__)
-        exit()
-
-    try:
-        # Fire up the class:
-        downloader = ImgurDownloader(url)
-
-        if not print_only:
-            print(("Found {0} images in album"
-                   .format(downloader.num_images())))
-
-            exts = downloader.list_extensions()
-            if exts is not None:
-                for i in exts:
-                    print(("Found {0} files with {1} extension"
-                           .format(i[1], i[0])))
-
-        # Called when an image is about to download:
-        def print_image_progress(index, url, dest):
-            print(("Downloading Image %d" % index))
-            print(("    %s >> %s" % (url, dest)))
-
-        downloader.on_image_download(print_image_progress)
-
-        # Called when the downloads are all done.
-        def all_done():
-            print("")
-            print("Done!")
-
-        downloader.on_complete(all_done)
-
-        # Work out if we have a foldername or not:
-        if destination_folder:
-            albumFolder = destination_folder
-        else:
-            albumFolder = ''
-
-        if not print_only:
-            # Enough talk, let's save!
-            downloader.save_images(albumFolder)
-        else:
-            # for img_id, ext in downloader.json_imageIDs:
-            for img_id, ext in downloader.imageIDs:
-                print('https://i.imgur.com/{}{}'.format(img_id, ext))
-        exit()  # NOTE: may not be needed
-
-    except ImgurException as e:
-        print(("Error: " + e.msg))
-        print("")
-        print("How to use")
-        print("=============")
-        print(__doc__)
-        exit(1)
-
-
-if __name__ == '__main__':
-    main()
