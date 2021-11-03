@@ -205,10 +205,12 @@ While Pytorch is used, the webscraper outputs are in can be used with any machin
 - [imgur_downloader](https://github.com/jtara1/imgur_downloader)
 - [lbpcascade_animeface](https://github.com/nagadomi/lbpcascade_animeface)
 - [Pytorch](https://pytorch.org/)
+- [torchvision](https://pytorch.org/vision/stable/index.html)
 - [OpenCV](https://opencv.org/)
 - [PIL](https://python-pillow.org/)
 - [Numpy](https://numpy.org/)
 - [matplotlib](https://matplotlib.org/)
+- [Scipy](https://scipy.org/)
 
 # Configuring Job JSON
 Sample webscraper session JSON for 五等分の花嫁  *(Gotoubun no Hanayome)* is available under `./examples/gotoubun_no_hanayome/gotoubun_no_hanayome.json`.
