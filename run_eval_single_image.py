@@ -1,5 +1,5 @@
 import os
-from pathlib import Path
+
 import torch
 import argparse
 import matplotlib.pyplot as plt
@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 from network.evaluation import eval_on_image
 from network.network_architectures import resnet_18
 
-FILE_TO_EVAL = "examples/gotoubun_no_hanayome/ExVxLqtUUAErTkv.jpg"
+FILE_TO_EVAL = os.path.join("examples", "gotoubun_no_hanayome", "ExVxLqtUUAErTkv.jpg")
 SESSION_DIR = "goutoubun_no_hanayome"
 DEVICE = "cuda:0"
 
@@ -27,9 +27,9 @@ if __name__ == "__main__":
     parser.add_argument("-b", "--best", dest="use_best", required=False, help=f"Whether to use final checkpoint (False) or best validation loss model (True). Default is {USE_BEST}.", default=USE_BEST)
     args = parser.parse_args()
 
-    session_folder = Path(args.session_folder)
+    session_folder = args.session_folder
     device = args.device
-    file = Path(args.file)
+    file = args.file
     use_best = bool(args.use_best)
 
     dataset_transforms = torch.load(os.path.join(session_folder, "checkpointing", "dataset_transforms.pth"))

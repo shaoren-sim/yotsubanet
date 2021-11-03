@@ -1,5 +1,5 @@
 # %%
-from pathlib import Path
+
 from webscraper.dataset_cleanup.image_hashing import hamming_distance, perceptual_hash, difference_hash, average_hash
 import os
 import matplotlib.pyplot as plt
@@ -25,9 +25,6 @@ class DatasetCleanup():
             image_hash_method (str, optional): Chosen hashing method, must be in ["dhash", "phash", "ahash"]. Can pass custom hashing method. Default "dhash" setting is fastest, performing best on Gotoubun no Hanayome test set. Defaults to "dhash".
             hamming_distance_threshold (int, optional): Hamming distance threshold. For default d-hash setting, default value performs best on Gotoubun no Hanayome test set. Defaults to 7.
         """    
-        labelled_data_folder = Path(labelled_data_folder)
-        unlabelled_data_folder = Path(unlabelled_data_folder)
-
         if image_hash_method == "dhash":
             self.image_hash_method = difference_hash
         elif image_hash_method == "phash":

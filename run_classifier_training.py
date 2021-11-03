@@ -1,5 +1,5 @@
 import os
-from pathlib import Path
+
 import torch
 import argparse
 
@@ -29,7 +29,7 @@ if __name__ == "__main__":
     parser.add_argument("-p", "--patience", dest="patience", required=False, help=f"Maximum number of epochs before stopping training with no improvement. Default is {EARLY_STOPPING_PATIENCE}.", default=EARLY_STOPPING_PATIENCE)
     args = parser.parse_args()
 
-    session_folder = Path(args.session_folder)
+    session_folder = args.session_folder
     batch_size = int(args.batch_size)
     device = args.device
     epochs = int(args.epochs)

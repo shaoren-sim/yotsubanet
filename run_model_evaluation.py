@@ -1,7 +1,7 @@
 import os
 import torch
 import argparse
-from pathlib import Path
+
 
 from network.evaluation import eval_on_folder
 from network.network_architectures import resnet_18
@@ -19,7 +19,7 @@ if __name__ == "__main__":
     parser.add_argument("-b", "--best", dest="use_best", required=False, help=f"Whether to use final checkpoint (False) or best validation loss model (True). Default is {USE_BEST}.", default=USE_BEST)
     args = parser.parse_args()
 
-    session_folder = Path(args.session_folder)
+    session_folder = args.session_folder
     device = args.device
     eval_limit = int(args.eval_limit)
     use_best = bool(args.use_best)

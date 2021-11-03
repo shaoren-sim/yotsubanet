@@ -10,7 +10,7 @@ from multiprocessing import Pool
 import argparse
 import datetime
 
-SESSION_FILE = "examples/gotoubun_no_hanayome/gotoubun_no_hanayome.json"
+SESSION_FILE = os.path.join("examples", "gotoubun_no_hanayome", "gotoubun_no_hanayome.json")
 SESSION_DIR = "goutoubun_no_hanayome"
 PROCESSES = 4
 

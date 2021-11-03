@@ -1,5 +1,5 @@
 # %%
-from pathlib import Path
+
 from webscraper.utils import initialize_data_folder, initialize_session_dir
 from config.reddit_praw_login_details import RedditLoginDetails
 from webscraper.reddit_scraper import RedditPrawler
@@ -11,7 +11,7 @@ from multiprocessing import Pool
 import argparse
 import datetime
 
-SESSION_FILE = "examples/gotoubun_no_hanayome/gotoubun_no_hanayome.json"
+SESSION_FILE = os.path.join("examples", "gotoubun_no_hanayome", "gotoubun_no_hanayome.json")
 SESSION_DIR = "goutoubun_no_hanayome"
 PROCESSES = 4
 
@@ -24,8 +24,8 @@ def main():
     parser.add_argument("-o", "--output", dest="session_dir", required=False, help="Webscraper output folder.", default=SESSION_DIR)
     args = parser.parse_args()
 
-    session_file = Path(args.session_file)
-    session_dir = Path(args.session_dir)
+    session_file = args.session_file
+    session_dir = args.session_dir
 
     # Initializing folder structure
     # labels, jobs = extract_labels_and_jobs_from_session(session_file)

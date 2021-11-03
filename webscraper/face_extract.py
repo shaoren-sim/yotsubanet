@@ -1,5 +1,5 @@
 import os
-from pathlib import Path
+
 import cv2 as cv
 import numpy as np
 import PIL
@@ -126,9 +126,6 @@ def preprocess_image(
     delete_images_with_no_faces: bool = True,
     folder_for_no_detected_faces: str = "no_detected_faces"
     ):
-    image_path = Path(image_path)
-    folder_for_multiple_faces = Path(folder_for_multiple_faces)
-    folder_for_no_detected_faces = Path(folder_for_no_detected_faces)
     """Wrapping cropping, transforms and saving into a single callable function. Includes auto delete for files that do not have detectable faces."""
     # Extract face coordinates
     coor_list = extract_face_coordinates(image_path)

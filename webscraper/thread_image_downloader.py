@@ -1,4 +1,4 @@
-from pathlib import Path
+
 import praw
 from imgur_downloader import ImgurDownloader
 from praw.models import MoreComments
@@ -22,13 +22,13 @@ def download_images_from_thread(
     data_folder: str = "data",
     preprocessing_function_list: list = [resize_image_to_square], 
     save_multiple_faces: bool = True, 
-    folder_for_multiple_faces: str = "extra_unlabelled_data/multiple_faces", 
+    folder_for_multiple_faces: str = os.path.join("extra_unlabelled_data", "multiple_faces"), 
     delete_images_with_no_faces: bool = True,
-    folder_for_no_detected_faces: str = "extra_unlabelled_data/no_detected_faces",
+    folder_for_no_detected_faces: str = os.path.join("extra_unlabelled_data", "no_detected_faces"),
     extraneous_data_folder: str = "extra_unlabelled_data",
     ):
-    folder_for_multiple_faces = Path(folder_for_multiple_faces)
-    folder_for_no_detected_faces = Path(folder_for_no_detected_faces)
+    folder_for_multiple_faces = folder_for_multiple_faces
+    folder_for_no_detected_faces = folder_for_no_detected_faces
     if save_multiple_faces:
         if not os.path.isdir(extraneous_data_folder):
             os.mkdir(extraneous_data_folder)
@@ -138,14 +138,12 @@ def download_fanart_from_subreddits(
     images_required: int = None,
     data_folder: str = "data",
     save_multiple_faces: bool = True, 
-    folder_for_multiple_faces: str = "extra_unlabelled_data/multiple_faces", 
+    folder_for_multiple_faces: str = os.path.join("extra_unlabelled_data", "multiple_faces"), 
     delete_images_with_no_faces: bool = True,
-    folder_for_no_detected_faces: str = "extra_unlabelled_data/no_detected_faces",
+    folder_for_no_detected_faces: str = os.path.join("extra_unlabelled_data", "no_detected_faces"), 
     extraneous_data_folder: str = "extra_unlabelled_data",
     preprocessing_function_list: list = [resize_image_to_square], 
     ):
-    folder_for_multiple_faces = Path(folder_for_multiple_faces)
-    folder_for_no_detected_faces = Path(folder_for_no_detected_faces)
     # If no specified number of images is provided, set no limit.
     if images_required is None:
         images_required = float("inf")

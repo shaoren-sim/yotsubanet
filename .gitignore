@@ -1,8 +1,9 @@
 __pycache__/
 
 lbpcascade_animeface.xml
+/config/reddit_praw_login_details.py
 
-imgur_downloader/
+# imgur_downloader/
 /gochiusa
 /goutoubun_no_hanayome
 
