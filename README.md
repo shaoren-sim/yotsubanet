@@ -161,6 +161,7 @@ Webscrapers and models were tested on Linux Mint 20.2.
             ```
     - Grayscale image removal.
         - Grayscale images potentially harm model training due to the lack of color features.
+        - Grayscale detection and removal is currently not perfect, but gets rid of most grayscale images.
         - Can be bypassed by commenting out the following line in `run_webscraper.py` or `run_cleanup_only.py`:
             ```python
             dataset_cleaner.remove_grayscale()
@@ -205,6 +206,7 @@ For CNN classifier training, a Pytorch backbone is provided, with an end-to-end 
 While Pytorch is used, the webscraper outputs are in can be used with any machine learning framework or techniques.
 
 # Requirements
+- Python v3.6+
 - [PRAW](https://pypi.org/project/praw/)
 - [imgur_downloader](https://github.com/jtara1/imgur_downloader)
 - [lbpcascade_animeface](https://github.com/nagadomi/lbpcascade_animeface)
@@ -217,7 +219,7 @@ While Pytorch is used, the webscraper outputs are in can be used with any machin
 - [Scipy](https://scipy.org/)
 
 # Configuring Job JSON
-Sample webscraper session JSON for 五等分の花嫁  *(Gotoubun no Hanayome)* is available under `./examples/gotoubun_no_hanayome/gotoubun_no_hanayome.json`.
+Sample webscraper session JSON for Gotoubun no Hanayome task is available under `./examples/gotoubun_no_hanayome/gotoubun_no_hanayome.json`.
 
 ```yaml
 {
@@ -259,7 +261,8 @@ Sample webscraper session JSON for 五等分の花嫁  *(Gotoubun no Hanayome)* 
 - Implement CLI session and job generator.
 - Add thread flair filter for comment jobs.
 - ~~Modify session files to be in JSON format for easier parsing.~~
-- Test on alternative labelled dataset.
+- ~~Test on alternative labelled dataset.~~
+- Finetune grayscale detection threshold value.
 - Sort out tests and provide clear example.
 - Add detailed documentation.
 - Add references.
