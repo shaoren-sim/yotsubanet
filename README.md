@@ -63,9 +63,9 @@ CASCADE_SCALE = 1.01
 ```
 Modifying the cascade variables is recommended to fine-tune face detection, especially for large images.
 
-##Example Classification Results
+## Example Classification Results
 
-###Gotoubun no Hanayome
+### Gotoubun no Hanayome
 ![result](examples/gotoubun_no_hanayome/results/single_image_eval.png)
 
 - Original image from https://pbs.twimg.com/media/ExVxLqtUUAErTkv.jpg?name=large.
@@ -73,7 +73,7 @@ Modifying the cascade variables is recommended to fine-tune face detection, espe
 - Dataset used for model training included in repo, extract with:
     `$ gzip -d test_dataset.tar.gz`
 
-###Gochuumon wa Usagi desu ka?
+### Gochuumon wa Usagi desu ka?
 ![result](examples/gochiusa/results/mhj4jrleqwm21_detect.jpg)
 
 - Original image from https://www.gochiusa.com/news/hp0001/index07030000.html.
