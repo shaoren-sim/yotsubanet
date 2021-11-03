@@ -167,7 +167,7 @@ def preprocess_image(
         if save_multiple_faces:
             print(f'{len(coor_list)} faces detected.')
             image = PIL.Image.open(image_path)
-            filename, ext = os.path.splitext(image_path.split('/')[-1])
+            filename, ext = os.path.splitext(image_path.split(os.path.sep)[-1])
             for ind, coor in enumerate(coor_list):
                 image_cropped = crop_faces(image, coor)
                 for func in preprocessing_function_list:
