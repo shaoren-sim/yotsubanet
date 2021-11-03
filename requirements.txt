@@ -7,4 +7,5 @@ opencv-python
 Pillow
 click
 scipy
+torchvision
 # imgur-downloader
