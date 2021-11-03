@@ -36,7 +36,7 @@ A complete CNN backbone (Resnet18) is also provided, and has been validated to w
 
 6. **(Optional)** Set up Reddit credentials at `config/reddit_praw_login_details.py` by creating a script app at [https://old.reddit.com/prefs/apps/](https://old.reddit.com/prefs/apps/). A working scraper bot agent's credentials are provided by default, but not guaranteed to work.
 6. Configure custom scraper session JSON with jobs. See **Configuring Job JSON** section for details.
-7. Run webscraper, webscraper output will be saved to a **session directory**, defined in the `-o` argument. 
+7. Run webscraper, webscraper output will be saved to an automatically created **session directory**, defined in the `-o` argument. 
 
     `$ python run_webscraper.py -i /path/to/session/joblist.json -o /path/to/session/dir -p process_count`
 
