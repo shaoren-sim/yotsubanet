@@ -115,14 +115,14 @@ Webscrapers and models were tested on Linux Mint 20.2.
         ```
         
     - Note that CPU training increases the training time significantly.
-2) How to use the pre-trained weights for face recognition in images?
-    - Ensure [lbpcascade_animeface](https://github.com/nagadomi/lbpcascade_animeface) HAAR cascade file is downloaded. 
+2) How to use the pre-trained weights for face recognition in single images?
+    - Ensure [lbpcascade_animeface](https://github.com/nagadomi/lbpcascade_animeface) HAAR cascade file is in the main yotsubanet directory. 
 
         `$ wget https://raw.githubusercontent.com/nagadomi/lbpcascade_animeface/master/lbpcascade_animeface.xml`
 
-    - Download the weights from https://drive.google.com/drive/folders/16_eOyHU0StlwjiNaCKDfr7A1tgpui0xk?usp=sharing
+    - Download the weights from https://drive.google.com/drive/folders/16_eOyHU0StlwjiNaCKDfr7A1tgpui0xk?usp=sharing, run the follwing.
 
-    - Run `$ python run_eval_single_image.py -i /path/to/gochiusa -f /path/to/gochiusa/image.png`
+        `$ python run_eval_single_image.py -i yotsubanet_misc/gochiusa -f /path/to/single/image.png`
 
     - If some faces are not detected, or if you are detecting non-faces, fine-tune the HAAR cascade detection parameters in `run_eval_single_image.py`.
 
