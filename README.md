@@ -143,6 +143,8 @@ Webscrapers and models were tested on Linux Mint 20.2 and Windows 10 ver 2004, (
     - AdamW optimizer `(lr=0.001, eps=0.1)` with cross-entropy loss criterion.
     - Batch size 16
     - Validation split of 20%
+    - Normalization over dataset
+    - Random horizontal flip.
 6) What are the targets for the webscraper?
     - Image posts on character-specific subreddits (i.e. images of Yotsuba from [/r/Yotsubros/](www.reddit.com/r/Yotsubros/))
     - Image posts on a property-specific title with a character's name in title (i.e. posts titled 'Yotsuba' from [/r/5ToubunNoHanayome/](https://www.reddit.com/r/5ToubunNoHanayome/))
