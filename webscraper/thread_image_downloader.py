@@ -62,8 +62,13 @@ def download_images_from_thread(
 
             # check returned mime-type just in case it is malicious
             if len(names_in_link_text) > 0:
-                if requests.get(url, allow_redirects=False).status_code == 200:
-                    if requests.get(url, allow_redirects=False).headers['Content-Type'] == "text/html":
+                try:
+                    req = requests.get(url, allow_redirects=False)
+                except requests.exceptions.ConnectionError as e:
+                    print(e)
+                    continue
+                if req.status_code == 200:
+                    if req.headers['Content-Type'] == "text/html":
                         if 'imgur.com/a/' in url:
                             try:
                                 downloader = ImgurDownloader(url)

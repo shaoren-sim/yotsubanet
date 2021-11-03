@@ -1,4 +1,5 @@
 praw
+requests
 numpy
 matplotlib
 torch
