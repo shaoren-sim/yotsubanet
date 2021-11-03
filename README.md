@@ -17,22 +17,39 @@ A complete CNN backbone (Resnet18) is also provided, and has been validated to w
 1. Clone this repository.
 2. Ensure Python 3.6+ is installed.
 3. Navigate to main directory. 
+
     `$ cd /path/to/cloned/repository`
-4. Install requirements. 
+
+4. Install requirements.
+
     `$ pip install -r requirements.txt`
+    **Note, imgur-downloader is broken at time of writing, clone directly from github**
+    `$ git clone https://github.com/jtara1/imgur_downloader.git`
+
 5. Download [lbpcascade_animeface](https://github.com/nagadomi/lbpcascade_animeface) HAAR cascade file. 
+
     `$ wget https://raw.githubusercontent.com/nagadomi/lbpcascade_animeface/master/lbpcascade_animeface.xml`
+
 6. Set up Reddit credentials at `config/reddit_praw_login_details.py` by creating a script app at [https://old.reddit.com/prefs/apps/](https://old.reddit.com/prefs/apps/). A working scraper bot agent's credentials are provided by default, but not guaranteed to work.
 6. Configure custom scraper session JSON with jobs. See **Configuring Job JSON** section for details.
 7. Run webscraper, webscraper output will be saved to a **session directory**, in the `-o` argument. 
+
     `$ python run_webscraper.py -i /path/to/session/joblist.json -o /path/to/session/dir -p process_count`
+
 8. **(Recommended)** Do manual data cleanup. To run automated cleanup in post:
+
     `$ python run_cleanup_only.py -i /path/to/session/joblist.json -o /path/to/session/dir`
+
 9. Run CNN classifier training, use webscraper session directory as input.  
+
     `$ python run_classifier_training.py -i /path/to/session/dir`
+
 10. Test classifier predictions on unlabelled faces. 
+
     `$ python run_model_evaluation.py -i /path/to/session/dir`
+
 11. Detect faces and classify from single image.
+
     `$ python run_eval_single_image.py -i /path/to/session/dir -f /image/to/eval.png`
 
 ## Notes
@@ -71,6 +88,7 @@ Modifying the cascade variables is recommended to fine-tune face detection, espe
 - Original image from https://pbs.twimg.com/media/ExVxLqtUUAErTkv.jpg?name=large.
 - Resnet18 weights used for image predictions available at https://drive.google.com/drive/folders/16_eOyHU0StlwjiNaCKDfr7A1tgpui0xk?usp=sharing.
 - Dataset used for model training included in repo, extract with:
+
     `$ gzip -d test_dataset.tar.gz`
 
 ### Gochuumon wa Usagi desu ka?
@@ -85,39 +103,47 @@ Webscrapers and models were tested on Linux Mint 20.2.
 1) Can the program be used without a CUDA-capable GPU?
     - When running classifier training (`run_classifier_training.py`) or evaluation (`run_model_evaluation.py`, `run_eval_single_image.py`), add `-d cpu` to train/evaluate networks on the CPU.
     - Alternatively, modify the following global constant in each of the files.
+
         ```python
         # DEVICE = "cuda:0"
         # Change the above line to -->
         DEVICE = "cpu"
         ```
+        
     - Note that CPU training increases the training time significantly.
-1) How to use the pre-trained weights for face recognition in images?
+2) How to use the pre-trained weights for face recognition in images?
     - Ensure [lbpcascade_animeface](https://github.com/nagadomi/lbpcascade_animeface) HAAR cascade file is downloaded. 
-    `$ wget https://raw.githubusercontent.com/nagadomi/lbpcascade_animeface/master/lbpcascade_animeface.xml`
+
+        `$ wget https://raw.githubusercontent.com/nagadomi/lbpcascade_animeface/master/lbpcascade_animeface.xml`
+
     - Download the weights from https://drive.google.com/drive/folders/16_eOyHU0StlwjiNaCKDfr7A1tgpui0xk?usp=sharing
+    
     - Run `$ python run_eval_single_image.py -i /path/to/gochiusa -f /path/to/gochiusa/image.png`
+
     - If some faces are not detected, or if you are detecting non-faces, fine-tune the HAAR cascade detection parameters in `run_eval_single_image.py`.
+
         ```python
         # Viola cascade parameters for Gotoubun no Hanayome Movie Key Visual
         CASCADE_MIN_NEIGHBORS = 6
         CASCADE_SCALE = 1.01
         # For Gochiusa image, CASCADE_MIN_NEIGHBORS was set to 60.
         ```
-2) Why use model training endpoint instead of checkpoint with best loss?
+
+3) Why use model training endpoint instead of checkpoint with best loss?
     - Due to the small size of the webscraped dataset, the validation loss is less indicative of good model generalizability. Using the training endpoint seems to give better performance, but can be overridden by appending `-b 1` on evaluation scripts.
-3) Why Resnet18? Why a batch size of 16?
+4) Why Resnet18? Why a batch size of 16?
     - GPU training was tested on an Nvidia MX150 (2GB), which runs into memory issues with larger models and batch sizes.
     - The relative simplicity of the face classification problem does not significantly benefit from larger models. Preliminary tests with Resnet50 models show similar loss curves with double the computational cost.
     - https://arxiv.org/abs/1804.07612 indicates that small batch sizes help with model generalizability, which is prudent for our networks which lack a sufficiently large dataset.
-4) What is the default network training protocol?
+5) What is the default network training protocol?
     - AdamW optimizer `(lr=0.001, eps=0.1)` with cross-entropy loss criterion.
     - Batch size 16
     - Validation split of 20%
-5) What are the targets for the webscraper?
+6) What are the targets for the webscraper?
     - Image posts on character-specific subreddits (i.e. images of Yotsuba from [/r/Yotsubros/](www.reddit.com/r/Yotsubros/))
     - Image posts on a property-specific title with a character's name in title (i.e. posts titled 'Yotsuba' from [/r/5ToubunNoHanayome/](https://www.reddit.com/r/5ToubunNoHanayome/))
     - Image links in comments of anime discussion posts with a character's name in link text (i.e. [comment links with text string 'Yotsuba'](https://www.reddit.com/r/anime/comments/m80o69/comment/greqvhm/?utm_source=share&utm_medium=web2x&context=3) from episode discussion threads on [/r/anime](www.reddit.com/r/anime))
-6) What automated cleanup is done when calling `run_cleanup_only.py` or `run_webscraper.py`?
+7) What automated cleanup is done when calling `run_cleanup_only.py` or `run_webscraper.py`?
     - Similar images or duplicates are determined with difference hashing (`dhash`).
         - Perceptual hashing (`phash`) is also available, but overly sensitive when applied on anime face images.
         - Average hashing (`ahash`) performs roughly equivalent to `dhash`, but is marginally slower due to a `mean()` operation.
@@ -139,7 +165,7 @@ Webscrapers and models were tested on Linux Mint 20.2.
             ```python
             # dataset_cleaner.preview_grayscale()
             ```
-7) Why "yotsubanet"?
+8) Why "yotsubanet"?
     - The name **'yostubanet'** was inspired by the 2021 anime 五等分の花嫁∬  *(Gotoubun no Hanayome ∬)*, the initial toy problem which the project was designed on.
     - This was a joke project taken too far.
 
