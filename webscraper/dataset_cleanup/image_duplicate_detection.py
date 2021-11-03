@@ -1,4 +1,5 @@
 # %%
+from pathlib import Path
 from webscraper.dataset_cleanup.image_hashing import hamming_distance, perceptual_hash, difference_hash, average_hash
 import os
 import matplotlib.pyplot as plt
@@ -24,6 +25,9 @@ class DatasetCleanup():
             image_hash_method (str, optional): Chosen hashing method, must be in ["dhash", "phash", "ahash"]. Can pass custom hashing method. Default "dhash" setting is fastest, performing best on Gotoubun no Hanayome test set. Defaults to "dhash".
             hamming_distance_threshold (int, optional): Hamming distance threshold. For default d-hash setting, default value performs best on Gotoubun no Hanayome test set. Defaults to 7.
         """    
+        labelled_data_folder = Path(labelled_data_folder)
+        unlabelled_data_folder = Path(unlabelled_data_folder)
+
         if image_hash_method == "dhash":
             self.image_hash_method = difference_hash
         elif image_hash_method == "phash":
@@ -50,17 +54,6 @@ class DatasetCleanup():
             print(f"{label}: {len([f for f in os.listdir(os.path.join(self.labelled_data_folder, label)) if os.path.splitext(f)[-1] in IMAGE_FORMATS])} images")
         
         print(f"Unlabelled Data: {len(os.listdir(self.unlabelled_data_folder))} images")
-    
-    def find_duplicates(self):
-        """For reference only, not actually used."""
-        for folder in os.listdir(self.labelled_data_folder) + [self.unlabelled_data_folder]:
-            print(folder)
-            file_list = get_images(os.path.join(DATA_DIR, folder))
-            file_hash_dict = generate_hash_dict(file_list, self.image_hash_method)
-            print(len(file_hash_dict), "total images.")
-            duplicate_dict = get_duplicates_of_files(file_hash_dict)
-            print(len(duplicate_dict), "duplicate images.")
-            # delete_duplicates(duplicate_dict)
     
     def inspect_duplicates(self):
         """
@@ -242,7 +235,7 @@ def delete_duplicates(dictionary_of_duplicates: dict):
                 except FileNotFoundError:
                     continue
 
-def is_grayscale(img_path: str, threshold: float = 0.005):
+def is_grayscale(img_path: str, threshold: float = 0.01):
     img = Image.open(img_path)
 
     ### splitting b,g,r channels

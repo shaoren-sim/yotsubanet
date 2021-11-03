@@ -115,6 +115,6 @@ def eval_on_image(
             bbox=dict(boxstyle="square", fc="pink", ec="b", lw=0)
             )
     if save_prediction_image_name is not None:
-        plt.savefig(save_prediction_image_name, dpi=500, bbox_inches='tight', pad_inches=0)
+        plt.savefig(save_prediction_image_name, dpi=200, bbox_inches='tight', pad_inches=0)
     plt.show()
     

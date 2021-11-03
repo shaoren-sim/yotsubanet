@@ -1,3 +1,4 @@
+from pathlib import Path
 import praw
 from imgur_downloader import ImgurDownloader
 from praw.models import MoreComments
@@ -26,6 +27,8 @@ def download_images_from_thread(
     folder_for_no_detected_faces: str = "extra_unlabelled_data/no_detected_faces",
     extraneous_data_folder: str = "extra_unlabelled_data",
     ):
+    folder_for_multiple_faces = Path(folder_for_multiple_faces)
+    folder_for_no_detected_faces = Path(folder_for_no_detected_faces)
     if save_multiple_faces:
         if not os.path.isdir(extraneous_data_folder):
             os.mkdir(extraneous_data_folder)
@@ -140,7 +143,9 @@ def download_fanart_from_subreddits(
     folder_for_no_detected_faces: str = "extra_unlabelled_data/no_detected_faces",
     extraneous_data_folder: str = "extra_unlabelled_data",
     preprocessing_function_list: list = [resize_image_to_square], 
-):
+    ):
+    folder_for_multiple_faces = Path(folder_for_multiple_faces)
+    folder_for_no_detected_faces = Path(folder_for_no_detected_faces)
     # If no specified number of images is provided, set no limit.
     if images_required is None:
         images_required = float("inf")
@@ -262,7 +267,7 @@ def run_job(
     delete_images_with_no_faces: bool = True,
     folder_for_no_detected_faces: str = "no_detected_faces",
     preprocessing_function_list: list = [resize_image_to_square], 
-):
+    ):
     jobtype, sub, search_string, thread_flair, label = job
 
     if jobtype == "comment_links":

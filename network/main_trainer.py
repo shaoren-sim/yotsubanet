@@ -41,8 +41,8 @@ def main_training_loop(
 
     for epoch in range(epochs):
         _start = time.time()
-        training_loss, training_acc = train_model(model, train_loader, optimizer, device=device)
-        validaiton_loss, validation_acc = validate_model(model, valid_loader, device=device)
+        training_loss, training_acc = train_model(model, train_loader, optimizer, criterion, device=device)
+        validaiton_loss, validation_acc = validate_model(model, valid_loader, criterion, device=device)
 
         is_best = checkpointing.check(validaiton_loss, epoch, model, optimizer)
 

@@ -1,22 +1,21 @@
 import os
+from pathlib import Path
 import torch
 import argparse
-import pickle
 import matplotlib.pyplot as plt
 
-from network.main_trainer import main_training_loop
-from network.dataloader import LabelFolderDataset
 from network.evaluation import eval_on_image
 from network.network_architectures import resnet_18
 
 FILE_TO_EVAL = "examples/gotoubun_no_hanayome/ExVxLqtUUAErTkv.jpg"
-OUTPUT_FILE = "examples/gotoubun_no_hanayome/results/single_image_eval_2.png"
 SESSION_DIR = "goutoubun_no_hanayome"
 DEVICE = "cuda:0"
 
 USE_BEST = False
 
-# Viola HAAR cascade parameters. Worth tuning for images to detect faces properly.
+# Viola Jones HAAR cascade parameters. Worth tuning for images to detect faces properly.
+# i.e. for Gochiusa image, MIN_NEIGHBORS = 60 was required to dodge false positives.
+# These settings worked best for the Gotoubun image.
 CASCADE_MIN_NEIGHBORS = 6
 CASCADE_SCALE = 1.01
 
@@ -28,9 +27,9 @@ if __name__ == "__main__":
     parser.add_argument("-b", "--best", dest="use_best", required=False, help=f"Whether to use final checkpoint (False) or best validation loss model (True). Default is {USE_BEST}.", default=USE_BEST)
     args = parser.parse_args()
 
-    session_folder = args.session_folder
+    session_folder = Path(args.session_folder)
     device = args.device
-    file = args.file
+    file = Path(args.file)
     use_best = bool(args.use_best)
 
     dataset_transforms = torch.load(os.path.join(session_folder, "checkpointing", "dataset_transforms.pth"))
@@ -51,4 +50,5 @@ if __name__ == "__main__":
     model.to(device)
 
     # Testing model on unseen data.
-    eval_on_image(file, model, dataset_transforms, classes, device=device, save_prediction_image_name=OUTPUT_FILE, cascade_min_neighbors=CASCADE_MIN_NEIGHBORS, cascade_scale_factor=CASCADE_SCALE)
+    _save_pred_name = f"{os.path.splitext(file)[0]}_detect{os.path.splitext(file)[1]}"
+    eval_on_image(file, model, dataset_transforms, classes, device=device, save_prediction_image_name=_save_pred_name, cascade_min_neighbors=CASCADE_MIN_NEIGHBORS, cascade_scale_factor=CASCADE_SCALE)

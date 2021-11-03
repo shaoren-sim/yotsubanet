@@ -1,11 +1,10 @@
 import os
+from pathlib import Path
 import torch
 import argparse
-import pickle
 
 from network.main_trainer import main_training_loop
 from network.dataloader import LabelFolderDataset
-from network.evaluation import eval_on_folder
 from network.network_architectures import resnet_18
 
 SESSION_DIR = "goutoubun_no_hanayome"
@@ -17,7 +16,6 @@ VALIDATION_FACTOR = 0.2
 DEVICE = "cuda:0"
 EARLY_STOPPING_PATIENCE = 30
 
-TEST_DATA_DIR = "extra_unlabelled_data/multiple_faces"
 EVAL_IMAGES_LIMIT = 300
 
 if __name__ == "__main__":
@@ -31,12 +29,15 @@ if __name__ == "__main__":
     parser.add_argument("-p", "--patience", dest="patience", required=False, help=f"Maximum number of epochs before stopping training with no improvement. Default is {EARLY_STOPPING_PATIENCE}.", default=EARLY_STOPPING_PATIENCE)
     args = parser.parse_args()
 
-    session_folder = args.session_folder
+    session_folder = Path(args.session_folder)
     batch_size = int(args.batch_size)
     device = args.device
     epochs = int(args.epochs)
     validation_factor = float(args.validation_factor)
-    data_limit = int(args.data_limit)
+    if args.data_limit is "None" or "0":
+        data_limit = None  
+    else:
+        data_limit = int(args.data_limit)
     early_stopping_patience = int(args.patience)
 
     if "cuda" in device:

@@ -64,10 +64,3 @@ def save_session(
     # json_obj = json.dumps(dict_to_save)
     with open(json_path, 'w') as file:
         json.dump(dict_to_save, file, indent=4)
-
-if __name__ == "__main__":
-    WRITE_TO_PATH = "webscraper_session/gotoubun_no_hanayome.json"
-    session = read_session(WRITE_TO_PATH)
-    labels, jobs = extract_labels_and_jobs_from_session(WRITE_TO_PATH)
-    print(labels)
-    print(jobs)

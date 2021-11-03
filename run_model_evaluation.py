@@ -1,11 +1,8 @@
 import os
 import torch
 import argparse
-import pickle
-import matplotlib.pyplot as plt
+from pathlib import Path
 
-from network.main_trainer import main_training_loop
-from network.dataloader import LabelFolderDataset
 from network.evaluation import eval_on_folder
 from network.network_architectures import resnet_18
 
@@ -22,7 +19,7 @@ if __name__ == "__main__":
     parser.add_argument("-b", "--best", dest="use_best", required=False, help=f"Whether to use final checkpoint (False) or best validation loss model (True). Default is {USE_BEST}.", default=USE_BEST)
     args = parser.parse_args()
 
-    session_folder = args.session_folder
+    session_folder = Path(args.session_folder)
     device = args.device
     eval_limit = int(args.eval_limit)
     use_best = bool(args.use_best)
@@ -47,4 +44,4 @@ if __name__ == "__main__":
     model.to(device)
 
     # Testing model on unseen data.
-    eval_on_folder(model, dataset_transforms, classes, test_data_dir, eval_limit, device=device, save_prediction_image_name="yotsubanet_predictions.png")
+    eval_on_folder(model, dataset_transforms, classes, test_data_dir, eval_limit, device=device, save_prediction_image_name=f"{os.path.split(session_folder)[-1]}_unlabelled_preds.png")

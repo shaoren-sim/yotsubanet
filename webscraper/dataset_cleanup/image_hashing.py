@@ -118,25 +118,3 @@ def difference_hash(image: Image, dim_x: int = 9, dim_y: int = 8, hash_size: int
         return bit_string
     else:
         return difference
-
-if __name__ == "__main__":
-    img_path = "/home/shaoren/Downloads/Alyson_Hannigan_200512.jpg"
-    img_path_slight = "/home/shaoren/Pictures/Alyson_Hannigan_slightly_different.png"
-    img_path_very = "/home/shaoren/Pictures/Alyson_Hannigan_very_different.png"
-
-    bit_str_original = perceptual_hash(Image.open(img_path))
-    bit_str_slight = perceptual_hash(Image.open(img_path_slight))
-    bit_str_very = perceptual_hash(Image.open(img_path_very))
-
-    print("Perceptual Hashing")
-    print(hamming_distance(bit_str_original, bit_str_slight))
-    print(hamming_distance(bit_str_original, bit_str_very))
-
-    print("="*12)
-    bit_str_original = average_hash(Image.open(img_path))
-    bit_str_slight = average_hash(Image.open(img_path_slight))
-    bit_str_very = average_hash(Image.open(img_path_very))
-
-    print("Average Hashing")
-    print(hamming_distance(bit_str_original, bit_str_slight))
-    print(hamming_distance(bit_str_original, bit_str_very))
