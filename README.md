@@ -23,8 +23,8 @@ A complete CNN backbone (Resnet18) is also provided, and has been validated to w
 4. Install requirements.
 
     `$ pip install -r requirements.txt`
-    **Note, imgur-downloader is broken at time of writing, clone directly from github**
-    `$ git clone https://github.com/jtara1/imgur_downloader.git`
+
+    **Note, imgur-downloader is broken at time of writing, and the main file is included in the repo for importing purposes.**
 
 5. Download [lbpcascade_animeface](https://github.com/nagadomi/lbpcascade_animeface) HAAR cascade file. 
 
@@ -117,7 +117,7 @@ Webscrapers and models were tested on Linux Mint 20.2.
         `$ wget https://raw.githubusercontent.com/nagadomi/lbpcascade_animeface/master/lbpcascade_animeface.xml`
 
     - Download the weights from https://drive.google.com/drive/folders/16_eOyHU0StlwjiNaCKDfr7A1tgpui0xk?usp=sharing
-    
+
     - Run `$ python run_eval_single_image.py -i /path/to/gochiusa -f /path/to/gochiusa/image.png`
 
     - If some faces are not detected, or if you are detecting non-faces, fine-tune the HAAR cascade detection parameters in `run_eval_single_image.py`.
