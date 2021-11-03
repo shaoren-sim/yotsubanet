@@ -3,6 +3,6 @@ requests
 numpy
 matplotlib
 torch
-opencv
+opencv-python
 Pillow
 imgur-downloader
