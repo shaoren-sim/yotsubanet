@@ -101,7 +101,7 @@ Modifying the cascade variables is recommended to fine-tune face detection, espe
 - Original image from https://www.gochiusa.com/news/hp0001/index07030000.html.
 - Resnet18 weights and dataset used are available at https://drive.google.com/drive/folders/16_eOyHU0StlwjiNaCKDfr7A1tgpui0xk?usp=sharing.
 
-Webscrapers and models were tested on Linux Mint 20.2.
+Webscrapers and models were tested on Linux Mint 20.2 and Windows 10 ver 2004, (OS Build 19041.1288).
 
 # FAQ
 1) Can the program be used without a CUDA-capable GPU?
