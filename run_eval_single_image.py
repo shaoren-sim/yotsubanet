@@ -39,7 +39,7 @@ if __name__ == "__main__":
         if torch.cuda.is_available():
             print("CUDA-capable GPU is available, proceeding.")
         else:
-            raise RuntimeError("No CUDA-capable GPU, terminating.")
+            raise RuntimeError("No CUDA-capable GPU, terminating. To use CPU training, run 'python run_eval_single_image.py ... -d cpu'")
 
     model = resnet_18(num_classes=len(classes))
     if use_best:
