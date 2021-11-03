@@ -31,8 +31,8 @@ def main():
     # Initializing folder structure
     labels, jobs = extract_labels_and_jobs_from_session(session_file)
     if os.path.exists(session_dir):
-        print(f"{session_dir} already exists. Using {session_dir}_{datetime.today().strftime('%Y%m%d')} instead.")
-        session_dir = f"{session_dir}_{datetime.today().strftime('%Y%m%d')}"
+        print(f"{session_dir} already exists. Using {session_dir}_{datetime.datetime.today().strftime('%Y%m%d')} instead.")
+        session_dir = f"{session_dir}_{datetime.datetime.today().strftime('%Y%m%d')}"
     session_dir, data_dir, unlabelled_data_dir = initialize_session_dir(session_dir, DATA_FOLDER, UNLABELLED_DATA_FOLDER)
     initialize_data_folder(labels, data_dir)
 

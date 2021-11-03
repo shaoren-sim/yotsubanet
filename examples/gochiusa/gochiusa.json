@@ -1,0 +1,141 @@
+{
+    "labels": [
+        "cocoa",
+        "chino",
+        "sharo",
+        "syaro",
+        "chiya",
+        "rise",
+        "rize",
+        "maya",
+        "megu"
+    ],
+    "jobs": [
+        {
+            "TYPE": "comment_links",
+            "SUBREDDIT": "anime",
+            "SEARCH_QUERY": "Gochuumon wa Usagi Desuka Episode Discussion",
+            "THREAD_FLAIR": null,
+            "LABEL": "cocoa"
+        },
+        {
+            "TYPE": "comment_links",
+            "SUBREDDIT": "anime",
+            "SEARCH_QUERY": "Gochuumon wa Usagi Desuka Episode Discussion",
+            "THREAD_FLAIR": null,
+            "LABEL": "chino"
+        },
+        {
+            "TYPE": "comment_links",
+            "SUBREDDIT": "anime",
+            "SEARCH_QUERY": "Gochuumon wa Usagi Desuka Episode Discussion",
+            "THREAD_FLAIR": null,
+            "LABEL": "sharo"
+        },
+        {
+            "TYPE": "comment_links",
+            "SUBREDDIT": "anime",
+            "SEARCH_QUERY": "Gochuumon wa Usagi Desuka Episode Discussion",
+            "THREAD_FLAIR": null,
+            "LABEL": "syaro"
+        },
+        {
+            "TYPE": "comment_links",
+            "SUBREDDIT": "anime",
+            "SEARCH_QUERY": "Gochuumon wa Usagi Desuka Episode Discussion",
+            "THREAD_FLAIR": null,
+            "LABEL": "chiya"
+        },
+        {
+            "TYPE": "comment_links",
+            "SUBREDDIT": "anime",
+            "SEARCH_QUERY": "Gochuumon wa Usagi Desuka Episode Discussion",
+            "THREAD_FLAIR": null,
+            "LABEL": "rise"
+        },
+        {
+            "TYPE": "comment_links",
+            "SUBREDDIT": "anime",
+            "SEARCH_QUERY": "Gochuumon wa Usagi Desuka Episode Discussion",
+            "THREAD_FLAIR": null,
+            "LABEL": "rize"
+        },
+        {
+            "TYPE": "comment_links",
+            "SUBREDDIT": "anime",
+            "SEARCH_QUERY": "Gochuumon wa Usagi Desuka Episode Discussion",
+            "THREAD_FLAIR": null,
+            "LABEL": "maya"
+        },
+        {
+            "TYPE": "comment_links",
+            "SUBREDDIT": "anime",
+            "SEARCH_QUERY": "Gochuumon wa Usagi Desuka Episode Discussion",
+            "THREAD_FLAIR": null,
+            "LABEL": "megu"
+        },
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "GochiUsa",
+            "SEARCH_QUERY": "cocoa",
+            "THREAD_FLAIR": null,
+            "LABEL": "cocoa"
+        },
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "GochiUsa",
+            "SEARCH_QUERY": "chino",
+            "THREAD_FLAIR": null,
+            "LABEL": "chino"
+        },
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "GochiUsa",
+            "SEARCH_QUERY": "sharo",
+            "THREAD_FLAIR": null,
+            "LABEL": "sharo"
+        },
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "GochiUsa",
+            "SEARCH_QUERY": "syaro",
+            "THREAD_FLAIR": null,
+            "LABEL": "sharo"
+        },
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "GochiUsa",
+            "SEARCH_QUERY": "chiya",
+            "THREAD_FLAIR": null,
+            "LABEL": "chiya"
+        },
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "GochiUsa",
+            "SEARCH_QUERY": "rize",
+            "THREAD_FLAIR": null,
+            "LABEL": "rize"
+        },
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "GochiUsa",
+            "SEARCH_QUERY": "rise",
+            "THREAD_FLAIR": null,
+            "LABEL": "rize"
+        },
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "GochiUsa",
+            "SEARCH_QUERY": "maya",
+            "THREAD_FLAIR": null,
+            "LABEL": "maya"
+        },
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "GochiUsa",
+            "SEARCH_QUERY": "megu",
+            "THREAD_FLAIR": null,
+            "LABEL": "megu"
+        }
+    ]
+}

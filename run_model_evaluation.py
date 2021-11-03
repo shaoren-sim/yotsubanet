@@ -10,23 +10,15 @@ from network.evaluation import eval_on_folder
 from network.network_architectures import resnet_18
 
 SESSION_DIR = "goutoubun_no_hanayome"
-DATA_DIR = "data"
-DATA_LIMIT = 250
-BATCH_SIZE = 16
-EPOCHS = 100
-VALIDATION_FACTOR = 0.2
 DEVICE = "cuda:0"
-EARLY_STOPPING_PATIENCE = 20
-
 USE_BEST = False
-
 EVAL_IMAGES_LIMIT = 200
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("-i", "--input", dest="session_folder", required=False, help="Input/Webscraper output folder.", default=SESSION_DIR)
     parser.add_argument("-d", "--device", dest="device", required=False, help=f"Model training device, can be 'cpu' or 'cuda:gpu_index'. Default is {DEVICE}.", default=DEVICE)
-    parser.add_argument("-l", "--datalimit", dest="eval_limit", required=False, help=f"Maximum amount of images in unlabelled folder to evaluate, can be None to use all. Default is {EVAL_IMAGES_LIMIT}.", default=DATA_LIMIT)
+    parser.add_argument("-l", "--datalimit", dest="eval_limit", required=False, help=f"Maximum amount of images in unlabelled folder to evaluate, can be None to use all. Default is {EVAL_IMAGES_LIMIT}.", default=EVAL_IMAGES_LIMIT)
     parser.add_argument("-b", "--best", dest="use_best", required=False, help=f"Whether to use final checkpoint (False) or best validation loss model (True). Default is {USE_BEST}.", default=USE_BEST)
     args = parser.parse_args()
 

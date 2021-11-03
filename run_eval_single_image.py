@@ -10,13 +10,13 @@ from network.evaluation import eval_on_image
 from network.network_architectures import resnet_18
 
 FILE_TO_EVAL = "examples/gotoubun_no_hanayome/ExVxLqtUUAErTkv.jpg"
-OUTPUT_FILE = "examples/gotoubun_no_hanayome/results/single_image_eval.png"
+OUTPUT_FILE = "examples/gotoubun_no_hanayome/results/single_image_eval_2.png"
 SESSION_DIR = "goutoubun_no_hanayome"
 DEVICE = "cuda:0"
 
 USE_BEST = False
 
-# Viola cascade parameters. Worth tuning for images to detect faces properly.
+# Viola HAAR cascade parameters. Worth tuning for images to detect faces properly.
 CASCADE_MIN_NEIGHBORS = 6
 CASCADE_SCALE = 1.01
 

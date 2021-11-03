@@ -15,8 +15,15 @@ def download_image(image_url: str, filename: str):
         r.raw.decode_content = True
         
         # Open a local file with wb ( write binary ) permission.
-        with open(filename,'wb') as f:
-            shutil.copyfileobj(r.raw, f)
+        try:
+            with open(filename,'wb') as f:
+                shutil.copyfileobj(r.raw, f)
+        except OSError as e:    # Catching error if filename is too long.
+            print(e)
+            print("truncating filename")
+            filename = filename[:30]
+            with open(filename,'wb') as f:
+                shutil.copyfileobj(r.raw, f)
             
         print('Image sucessfully Downloaded: ',filename)
     else:

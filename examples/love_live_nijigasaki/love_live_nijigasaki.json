@@ -1,0 +1,191 @@
+{
+    "labels": [
+        "kasumi",
+        "shizuku",
+        "rina",
+        "yuu",
+        "ayumu",
+        "setsuna",
+        "ai",
+        "karin",
+        "kanata",
+        "emma"
+    ],
+    "jobs": [
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "LoveLive",
+            "SEARCH_QUERY": "kasukasu",
+            "THREAD_FLAIR": "Fan Art",
+            "LABEL": "kasumi"
+        },
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "LoveLive",
+            "SEARCH_QUERY": "kasukasu",
+            "THREAD_FLAIR": "Fan Art",
+            "LABEL": "kasumi"
+        },
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "LoveLive",
+            "SEARCH_QUERY": "kasumin",
+            "THREAD_FLAIR": "Fan Art",
+            "LABEL": "kasumi"
+        },
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "LoveLive",
+            "SEARCH_QUERY": "kasumi",
+            "THREAD_FLAIR": "Fan Art",
+            "LABEL": "kasumi"
+        },
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "LoveLive",
+            "SEARCH_QUERY": "shizuku",
+            "THREAD_FLAIR": "Fan Art",
+            "LABEL": "shizuku"
+        },
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "LoveLive",
+            "SEARCH_QUERY": "rina",
+            "THREAD_FLAIR": "Fan Art",
+            "LABEL": "rina"
+        },
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "LoveLive",
+            "SEARCH_QUERY": "kasuyuumi",
+            "THREAD_FLAIR": "Fan Art",
+            "LABEL": "yuu"
+        },
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "LoveLive",
+            "SEARCH_QUERY": "ayumu",
+            "THREAD_FLAIR": "Fan Art",
+            "LABEL": "ayumu"
+        },
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "LoveLive",
+            "SEARCH_QUERY": "pomu",
+            "THREAD_FLAIR": "Fan Art",
+            "LABEL": "ayumu"
+        },
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "LoveLive",
+            "SEARCH_QUERY": "setsuna",
+            "THREAD_FLAIR": "Fan Art",
+            "LABEL": "setsuna"
+        },
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "LoveLive",
+            "SEARCH_QUERY": "nana",
+            "THREAD_FLAIR": "Fan Art",
+            "LABEL": "setsuna"
+        },
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "LoveLive",
+            "SEARCH_QUERY": "ai",
+            "THREAD_FLAIR": "Fan Art",
+            "LABEL": "ai"
+        },
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "LoveLive",
+            "SEARCH_QUERY": "karin",
+            "THREAD_FLAIR": "Fan Art",
+            "LABEL": "karin"
+        },
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "LoveLive",
+            "SEARCH_QUERY": "kanata",
+            "THREAD_FLAIR": "Fan Art",
+            "LABEL": "kanata"
+        },
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "LoveLive",
+            "SEARCH_QUERY": "emma",
+            "THREAD_FLAIR": "Fan Art",
+            "LABEL": "emma"
+        },
+        {
+            "TYPE": "comment_links",
+            "SUBREDDIT": "anime",
+            "SEARCH_QUERY": "Love Live! Nijigasaki Gakuen School Idol Doukoukai Episode Discussion",
+            "THREAD_FLAIR": null,
+            "LABEL": "kasumi"
+        },
+        {
+            "TYPE": "comment_links",
+            "SUBREDDIT": "anime",
+            "SEARCH_QUERY": "Love Live! Nijigasaki Gakuen School Idol Doukoukai Episode Discussion",
+            "THREAD_FLAIR": null,
+            "LABEL": "shizuku"
+        },
+        {
+            "TYPE": "comment_links",
+            "SUBREDDIT": "anime",
+            "SEARCH_QUERY": "Love Live! Nijigasaki Gakuen School Idol Doukoukai Episode Discussion",
+            "THREAD_FLAIR": null,
+            "LABEL": "rina"
+        },
+        {
+            "TYPE": "comment_links",
+            "SUBREDDIT": "anime",
+            "SEARCH_QUERY": "Love Live! Nijigasaki Gakuen School Idol Doukoukai Episode Discussion",
+            "THREAD_FLAIR": null,
+            "LABEL": "yuu"
+        },
+        {
+            "TYPE": "comment_links",
+            "SUBREDDIT": "anime",
+            "SEARCH_QUERY": "Love Live! Nijigasaki Gakuen School Idol Doukoukai Episode Discussion",
+            "THREAD_FLAIR": null,
+            "LABEL": "ayumu"
+        },
+        {
+            "TYPE": "comment_links",
+            "SUBREDDIT": "anime",
+            "SEARCH_QUERY": "Love Live! Nijigasaki Gakuen School Idol Doukoukai Episode Discussion",
+            "THREAD_FLAIR": null,
+            "LABEL": "setsuna"
+        },
+        {
+            "TYPE": "comment_links",
+            "SUBREDDIT": "anime",
+            "SEARCH_QUERY": "Love Live! Nijigasaki Gakuen School Idol Doukoukai Episode Discussion",
+            "THREAD_FLAIR": null,
+            "LABEL": "ai"
+        },
+        {
+            "TYPE": "comment_links",
+            "SUBREDDIT": "anime",
+            "SEARCH_QUERY": "Love Live! Nijigasaki Gakuen School Idol Doukoukai Episode Discussion",
+            "THREAD_FLAIR": null,
+            "LABEL": "karin"
+        },
+        {
+            "TYPE": "comment_links",
+            "SUBREDDIT": "anime",
+            "SEARCH_QUERY": "Love Live! Nijigasaki Gakuen School Idol Doukoukai Episode Discussion",
+            "THREAD_FLAIR": null,
+            "LABEL": "kanata"
+        },
+        {
+            "TYPE": "comment_links",
+            "SUBREDDIT": "anime",
+            "SEARCH_QUERY": "Love Live! Nijigasaki Gakuen School Idol Doukoukai Episode Discussion",
+            "THREAD_FLAIR": null,
+            "LABEL": "emma"
+        }
+    ]
+}
