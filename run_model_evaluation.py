@@ -31,7 +31,7 @@ if __name__ == "__main__":
         if torch.cuda.is_available():
             print("CUDA-capable GPU is available, proceeding.")
         else:
-            raise RuntimeError("No CUDA-capable GPU, terminating.")
+            raise RuntimeError("No CUDA-capable GPU, terminating. To use CPU training, run 'python run_model_evaluation.py ... -d cpu'")
 
     test_data_dir = os.path.join(session_folder, "unlabelled_data", "multiple_faces")
 
