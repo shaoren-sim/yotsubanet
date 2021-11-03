@@ -34,7 +34,7 @@ A complete CNN backbone (Resnet18) is also provided, and has been validated to w
     
     - On Windows, right click "Save Link As" [lbpcascade_animeface.xml](https://raw.githubusercontent.com/nagadomi/lbpcascade_animeface/master/lbpcascade_animeface.xml) and place `lbpcascade_animeface.xml` in the main yotsubanet directory.
 
-6. Set up Reddit credentials at `config/reddit_praw_login_details.py` by creating a script app at [https://old.reddit.com/prefs/apps/](https://old.reddit.com/prefs/apps/). A working scraper bot agent's credentials are provided by default, but not guaranteed to work.
+6. **(Optional)** Set up Reddit credentials at `config/reddit_praw_login_details.py` by creating a script app at [https://old.reddit.com/prefs/apps/](https://old.reddit.com/prefs/apps/). A working scraper bot agent's credentials are provided by default, but not guaranteed to work.
 6. Configure custom scraper session JSON with jobs. See **Configuring Job JSON** section for details.
 7. Run webscraper, webscraper output will be saved to a **session directory**, in the `-o` argument. 
 
@@ -192,7 +192,7 @@ The primary component in this package is the Reddit webscraper, which includes t
     - Grayscale/manga image removal
 - Dataset visualization
 
-For CNN classifier training, a Pytorch backbone is provided, with an end-to-end Resnet18 model included by default.
+For CNN classifier training, a Pytorch backbone is provided, with a complete Resnet18 model included by default.
 - Dataset per-class max size constraint
     - For datasets with unbalanced class sizes.
 - Multiple normalization methods
