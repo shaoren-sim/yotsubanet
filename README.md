@@ -249,10 +249,10 @@ Sample webscraper session JSON for Gotoubun no Hanayome task is available under 
         ## 2B) TYPE = "subreddit_posts" - Search submissions/posts from character-specific subreddits.
         {
             "TYPE": "subreddit_posts",
-            "SUBREDDIT": "IchikaFanclub",   # r/SUBREDDIT, case-sensitive
+            "SUBREDDIT": "Yotsubros",   # r/SUBREDDIT, case-sensitive
             "SEARCH_QUERY": null,           # Search term, can be null to get all posts.
             "THREAD_FLAIR": "Fanart",       # thread flair filter, check subreddit for proper convention.
-            "LABEL": "Yotsubros"            # label to scrape for.
+            "LABEL": "yotsuba"            # label to scrape for.
         }
     ]
 }
