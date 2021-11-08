@@ -16,6 +16,9 @@ from multiprocessing import Pool
 # Tentatively hard coded, but can be toggled if required.
 FILTER_NSFW = True
 
+# Truncating the length of text to avoid filesystem errors.
+MAX_TEXT_LENGTH = 100
+
 def download_images_from_thread(
     discussion_thread: praw.models.reddit.submission.Submission,
     label: str,
@@ -62,6 +65,10 @@ def download_images_from_thread(
             # print(r"(?:(\b"+label+r"\b))")
             # check if url contains '.jpg' or '.png' extension
             # print(url)
+
+            # Truncate strings in case link text is too long
+            if len(link_text) > MAX_TEXT_LENGTH:
+                link_text = link_text[:MAX_TEXT_LENGTH]
 
             # check returned mime-type just in case it is malicious
             if len(names_in_link_text) > 0:
@@ -194,15 +201,21 @@ def download_fanart_from_subreddits(
         print(thread.title, thread.link_flair_text)
         print(thread.url)
 
+        title = thread.title
+        # Truncate strings in case link text is too long
+        if len(title) > MAX_TEXT_LENGTH:
+            title = title[:MAX_TEXT_LENGTH]
+
         try:
             download_image(thread.url, os.path.join(
                 data_folder, 
                 label, 
-                f'{strip_and_lowercase(thread.title)}{thread.url[-4:]}'))
+                f"{strip_and_lowercase(title)}{thread.url.split('.')[-1]}")
+            )
             preprocess_image(os.path.join(
                     data_folder, 
                     label, 
-                    f'{strip_and_lowercase(thread.title)}{thread.url[-4:]}'
+                    f"{strip_and_lowercase(title)}{thread.url.split('.')[-1]}"
                 ),
                 preprocessing_function_list, 
                 save_multiple_faces, 
@@ -226,6 +239,11 @@ def download_fanart_from_subreddits(
     for thread in gallery_posts:
         print(thread.title, thread.link_flair_text)
         print(thread.url)
+        title = thread.title
+        # Truncate strings in case link text is too long
+        if len(title) > MAX_TEXT_LENGTH:
+            title = title[:MAX_TEXT_LENGTH]
+
         image_dict = prawler.reddit.submission(url=thread.url).media_metadata
         for ind, image_item in enumerate(image_dict.values()):
             largest_image = image_item['s']
@@ -236,11 +254,11 @@ def download_fanart_from_subreddits(
                 download_image(image_url, os.path.join(
                     data_folder, 
                     label, 
-                    f"{strip_and_lowercase(thread.title)}_{ind}.{image_url.split('?')[0].split('.')[-1]}"))
+                    f"{strip_and_lowercase(title)}_{ind}.{image_url.split('?')[0].split('.')[-1]}"))
                 preprocess_image(os.path.join(
                         data_folder, 
                         label, 
-                        f"{strip_and_lowercase(thread.title)}_{ind}.{image_url.split('?')[0].split('.')[-1]}"
+                        f"{strip_and_lowercase(title)}_{ind}.{image_url.split('?')[0].split('.')[-1]}"
                     ),
                     preprocessing_function_list, 
                     save_multiple_faces, 
