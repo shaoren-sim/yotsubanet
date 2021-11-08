@@ -1,0 +1,345 @@
+{
+    "labels": [
+        "hikigaya",
+        "hachiman",
+        "yukino",
+        "yukinoshita",
+        "yukinon",
+        "yui",
+        "yuigahama",
+        "iroha",
+        "isshiki",
+        "kawasaki",
+        "saki",
+        "sensei",
+        "shirazuka",
+        "hiratsuka",
+        "saika",
+        "totsuka",
+        "hayato",
+        "hayama",
+        "yumiko",
+        "miura",
+        "hina",
+        "ebina",
+        "komachi",
+        "haruno"
+    ],
+    "jobs": [
+        {
+            "TYPE": "comment_links",
+            "SUBREDDIT": "anime",
+            "SEARCH_QUERY": "Yahari Ore no Seishun Love Comedy wa Machigatteiru Episode Discussion",
+            "THREAD_FLAIR": null,
+            "LABEL": "hikigaya"
+        },
+        {
+            "TYPE": "comment_links",
+            "SUBREDDIT": "anime",
+            "SEARCH_QUERY": "Yahari Ore no Seishun Love Comedy wa Machigatteiru Episode Discussion",
+            "THREAD_FLAIR": null,
+            "LABEL": "hachiman"
+        },
+        {
+            "TYPE": "comment_links",
+            "SUBREDDIT": "anime",
+            "SEARCH_QUERY": "Yahari Ore no Seishun Love Comedy wa Machigatteiru Episode Discussion",
+            "THREAD_FLAIR": null,
+            "LABEL": "yukino"
+        },
+        {
+            "TYPE": "comment_links",
+            "SUBREDDIT": "anime",
+            "SEARCH_QUERY": "Yahari Ore no Seishun Love Comedy wa Machigatteiru Episode Discussion",
+            "THREAD_FLAIR": null,
+            "LABEL": "yukinoshita"
+        },
+        {
+            "TYPE": "comment_links",
+            "SUBREDDIT": "anime",
+            "SEARCH_QUERY": "Yahari Ore no Seishun Love Comedy wa Machigatteiru Episode Discussion",
+            "THREAD_FLAIR": null,
+            "LABEL": "yukinon"
+        },
+        {
+            "TYPE": "comment_links",
+            "SUBREDDIT": "anime",
+            "SEARCH_QUERY": "Yahari Ore no Seishun Love Comedy wa Machigatteiru Episode Discussion",
+            "THREAD_FLAIR": null,
+            "LABEL": "yui"
+        },
+        {
+            "TYPE": "comment_links",
+            "SUBREDDIT": "anime",
+            "SEARCH_QUERY": "Yahari Ore no Seishun Love Comedy wa Machigatteiru Episode Discussion",
+            "THREAD_FLAIR": null,
+            "LABEL": "yuigahama"
+        },
+        {
+            "TYPE": "comment_links",
+            "SUBREDDIT": "anime",
+            "SEARCH_QUERY": "Yahari Ore no Seishun Love Comedy wa Machigatteiru Episode Discussion",
+            "THREAD_FLAIR": null,
+            "LABEL": "iroha"
+        },
+        {
+            "TYPE": "comment_links",
+            "SUBREDDIT": "anime",
+            "SEARCH_QUERY": "Yahari Ore no Seishun Love Comedy wa Machigatteiru Episode Discussion",
+            "THREAD_FLAIR": null,
+            "LABEL": "isshiki"
+        },
+        {
+            "TYPE": "comment_links",
+            "SUBREDDIT": "anime",
+            "SEARCH_QUERY": "Yahari Ore no Seishun Love Comedy wa Machigatteiru Episode Discussion",
+            "THREAD_FLAIR": null,
+            "LABEL": "kawasaki"
+        },
+        {
+            "TYPE": "comment_links",
+            "SUBREDDIT": "anime",
+            "SEARCH_QUERY": "Yahari Ore no Seishun Love Comedy wa Machigatteiru Episode Discussion",
+            "THREAD_FLAIR": null,
+            "LABEL": "saki"
+        },
+        {
+            "TYPE": "comment_links",
+            "SUBREDDIT": "anime",
+            "SEARCH_QUERY": "Yahari Ore no Seishun Love Comedy wa Machigatteiru Episode Discussion",
+            "THREAD_FLAIR": null,
+            "LABEL": "sensei"
+        },
+        {
+            "TYPE": "comment_links",
+            "SUBREDDIT": "anime",
+            "SEARCH_QUERY": "Yahari Ore no Seishun Love Comedy wa Machigatteiru Episode Discussion",
+            "THREAD_FLAIR": null,
+            "LABEL": "shirazuka"
+        },
+        {
+            "TYPE": "comment_links",
+            "SUBREDDIT": "anime",
+            "SEARCH_QUERY": "Yahari Ore no Seishun Love Comedy wa Machigatteiru Episode Discussion",
+            "THREAD_FLAIR": null,
+            "LABEL": "hiratsuka"
+        },
+        {
+            "TYPE": "comment_links",
+            "SUBREDDIT": "anime",
+            "SEARCH_QUERY": "Yahari Ore no Seishun Love Comedy wa Machigatteiru Episode Discussion",
+            "THREAD_FLAIR": null,
+            "LABEL": "saika"
+        },
+        {
+            "TYPE": "comment_links",
+            "SUBREDDIT": "anime",
+            "SEARCH_QUERY": "Yahari Ore no Seishun Love Comedy wa Machigatteiru Episode Discussion",
+            "THREAD_FLAIR": null,
+            "LABEL": "totsuka"
+        },
+        {
+            "TYPE": "comment_links",
+            "SUBREDDIT": "anime",
+            "SEARCH_QUERY": "Yahari Ore no Seishun Love Comedy wa Machigatteiru Episode Discussion",
+            "THREAD_FLAIR": null,
+            "LABEL": "hayato"
+        },
+        {
+            "TYPE": "comment_links",
+            "SUBREDDIT": "anime",
+            "SEARCH_QUERY": "Yahari Ore no Seishun Love Comedy wa Machigatteiru Episode Discussion",
+            "THREAD_FLAIR": null,
+            "LABEL": "hayama"
+        },
+        {
+            "TYPE": "comment_links",
+            "SUBREDDIT": "anime",
+            "SEARCH_QUERY": "Yahari Ore no Seishun Love Comedy wa Machigatteiru Episode Discussion",
+            "THREAD_FLAIR": null,
+            "LABEL": "yumiko"
+        },
+        {
+            "TYPE": "comment_links",
+            "SUBREDDIT": "anime",
+            "SEARCH_QUERY": "Yahari Ore no Seishun Love Comedy wa Machigatteiru Episode Discussion",
+            "THREAD_FLAIR": null,
+            "LABEL": "miura"
+        },
+        {
+            "TYPE": "comment_links",
+            "SUBREDDIT": "anime",
+            "SEARCH_QUERY": "Yahari Ore no Seishun Love Comedy wa Machigatteiru Episode Discussion",
+            "THREAD_FLAIR": null,
+            "LABEL": "hina"
+        },
+        {
+            "TYPE": "comment_links",
+            "SUBREDDIT": "anime",
+            "SEARCH_QUERY": "Yahari Ore no Seishun Love Comedy wa Machigatteiru Episode Discussion",
+            "THREAD_FLAIR": null,
+            "LABEL": "ebina"
+        },
+        {
+            "TYPE": "comment_links",
+            "SUBREDDIT": "anime",
+            "SEARCH_QUERY": "Yahari Ore no Seishun Love Comedy wa Machigatteiru Episode Discussion",
+            "THREAD_FLAIR": null,
+            "LABEL": "komachi"
+        },
+        {
+            "TYPE": "comment_links",
+            "SUBREDDIT": "anime",
+            "SEARCH_QUERY": "Yahari Ore no Seishun Love Comedy wa Machigatteiru Episode Discussion",
+            "THREAD_FLAIR": null,
+            "LABEL": "haruno"
+        },
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "OreGairuSNAFU",
+            "SEARCH_QUERY": "hachiman",
+            "THREAD_FLAIR": null,
+            "LABEL": "hachiman"
+        },
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "OreGairuSNAFU",
+            "SEARCH_QUERY": "yukino",
+            "THREAD_FLAIR": null,
+            "LABEL": "yukino"
+        },
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "OreGairuSNAFU",
+            "SEARCH_QUERY": "yukinon",
+            "THREAD_FLAIR": null,
+            "LABEL": "yukinon"
+        },
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "OreGairuSNAFU",
+            "SEARCH_QUERY": "yui",
+            "THREAD_FLAIR": null,
+            "LABEL": "yui"
+        },
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "OreGairuSNAFU",
+            "SEARCH_QUERY": "yuigahama",
+            "THREAD_FLAIR": null,
+            "LABEL": "yuigahama"
+        },
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "OreGairuSNAFU",
+            "SEARCH_QUERY": "iroha",
+            "THREAD_FLAIR": null,
+            "LABEL": "iroha"
+        },
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "OreGairuSNAFU",
+            "SEARCH_QUERY": "isshiki",
+            "THREAD_FLAIR": null,
+            "LABEL": "isshiki"
+        },
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "OreGairuSNAFU",
+            "SEARCH_QUERY": "kawasaki",
+            "THREAD_FLAIR": null,
+            "LABEL": "kawasaki"
+        },
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "OreGairuSNAFU",
+            "SEARCH_QUERY": "sensei",
+            "THREAD_FLAIR": null,
+            "LABEL": "sensei"
+        },
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "OreGairuSNAFU",
+            "SEARCH_QUERY": "shirazuka",
+            "THREAD_FLAIR": null,
+            "LABEL": "shirazuka"
+        },
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "OreGairuSNAFU",
+            "SEARCH_QUERY": "hiratsuka",
+            "THREAD_FLAIR": null,
+            "LABEL": "hiratsuka"
+        },
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "OreGairuSNAFU",
+            "SEARCH_QUERY": "saika",
+            "THREAD_FLAIR": null,
+            "LABEL": "saika"
+        },
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "OreGairuSNAFU",
+            "SEARCH_QUERY": "totsuka",
+            "THREAD_FLAIR": null,
+            "LABEL": "totsuka"
+        },
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "OreGairuSNAFU",
+            "SEARCH_QUERY": "hayato",
+            "THREAD_FLAIR": null,
+            "LABEL": "hayato"
+        },
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "OreGairuSNAFU",
+            "SEARCH_QUERY": "hayama",
+            "THREAD_FLAIR": null,
+            "LABEL": "hayama"
+        },
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "OreGairuSNAFU",
+            "SEARCH_QUERY": "yumiko",
+            "THREAD_FLAIR": null,
+            "LABEL": "yumiko"
+        },
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "OreGairuSNAFU",
+            "SEARCH_QUERY": "miura",
+            "THREAD_FLAIR": null,
+            "LABEL": "miura"
+        },
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "OreGairuSNAFU",
+            "SEARCH_QUERY": "hina",
+            "THREAD_FLAIR": null,
+            "LABEL": "hina"
+        },
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "OreGairuSNAFU",
+            "SEARCH_QUERY": "ebina",
+            "THREAD_FLAIR": null,
+            "LABEL": "ebina"
+        },
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "OreGairuSNAFU",
+            "SEARCH_QUERY": "komachi",
+            "THREAD_FLAIR": null,
+            "LABEL": "komachi"
+        },
+        {
+            "TYPE": "subreddit_posts",
+            "SUBREDDIT": "OreGairuSNAFU",
+            "SEARCH_QUERY": "haruno",
+            "THREAD_FLAIR": null,
+            "LABEL": "haruno"
+        }
+    ]
+}
