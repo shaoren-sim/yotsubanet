@@ -6,6 +6,7 @@ import PIL
 import shutil
 
 TARGET_SIZE = 224   # scale image to a square shape of (TARGET_SIZE, TARGET_SIZE). 224 is Resnet's input size.
+MIN_SIZE = 100       # Minimum face size to avoid tiny images and low-res false positives
 
 def detect_faces(filename, save_image=False, show_image=False, cascade_file="lbpcascade_animeface.xml"):
     if not os.path.isfile(cascade_file):
@@ -20,7 +21,7 @@ def detect_faces(filename, save_image=False, show_image=False, cascade_file="lbp
                                      # detector options
                                      scaleFactor = 1.1,
                                      minNeighbors = 5,
-                                     minSize = (24, 24))
+                                     minSize = (MIN_SIZE, MIN_SIZE))
     for (x, y, w, h) in faces:
         cv.rectangle(image, (x, y), (x + w, y + h), (0, 0, 255), 2)
 
@@ -41,7 +42,7 @@ def extract_face_coordinates(filename, expand_factor=10, cascade_file="lbpcascad
                                      # detector options
                                      scaleFactor = 1.1,
                                      minNeighbors = 5,
-                                     minSize = (24, 24))
+                                     minSize = (MIN_SIZE, MIN_SIZE))
     if len(faces) == 0:
         return []
     else:

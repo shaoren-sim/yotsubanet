@@ -210,12 +210,12 @@ def download_fanart_from_subreddits(
             download_image(thread.url, os.path.join(
                 data_folder, 
                 label, 
-                f"{strip_and_lowercase(title)}{thread.url.split('.')[-1]}")
+                f"{strip_and_lowercase(title)}.{thread.url.split('.')[-1]}")
             )
             preprocess_image(os.path.join(
                     data_folder, 
                     label, 
-                    f"{strip_and_lowercase(title)}{thread.url.split('.')[-1]}"
+                    f"{strip_and_lowercase(title)}.{thread.url.split('.')[-1]}"
                 ),
                 preprocessing_function_list, 
                 save_multiple_faces, 
