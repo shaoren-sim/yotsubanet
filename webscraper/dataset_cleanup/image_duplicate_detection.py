@@ -7,6 +7,7 @@ from PIL import Image
 import numpy as np
 
 IMAGE_FORMATS = [".png", ".jpg", ".jpeg"]
+GRAYSCALE_THRESHOLD = 50
 
 class DatasetCleanup():
     def __init__(
@@ -15,7 +16,7 @@ class DatasetCleanup():
         unlabelled_data_folder: str,
         image_hash_method: str = "dhash",
         hamming_distance_threshold: int = 7,
-        grayscale_threshold_value: float = 0.005,
+        grayscale_threshold_value: float = GRAYSCALE_THRESHOLD,
     ):
         """Class for duplicate detection and deletion. Wraps around hashing algorithms and plotting function.
 
@@ -142,24 +143,29 @@ class DatasetCleanup():
             file_list = get_images(os.path.join(self.labelled_data_folder, folder))
             grayscale_list.append([img for img in file_list if is_grayscale(img, self.grayscale_threshold_value)])
         # Unlabelled data deduplication
-        print(f"Unlabelled data: {self.unlabelled_data_folder}")
+        # print(f"Unlabelled data: {self.unlabelled_data_folder}")
         file_list = get_images(self.unlabelled_data_folder)
         grayscale_list.append([img for img in file_list if is_grayscale(img, self.grayscale_threshold_value)])
-        
         # Flatten list of grayscale images
         grayscale_list = [val for sublist in grayscale_list for val in sublist]
+        if len(grayscale_list) == 0:
+            print("No grayscale images")
+            return None
         print(len(grayscale_list), "grayscale images.")
 
-        fig, ax = plt.subplots(len(grayscale_list) // 10, 10)
+        fig, ax = plt.subplots(
+            len(grayscale_list) // 10 if len(grayscale_list) // 10 else 1, 
+            10 if len(grayscale_list) // 10 else len(grayscale_list)
+        )
         fig.set_figheight((len(grayscale_list) // 10) * 3)
         fig.set_figwidth(25)
-
         for ind, a in enumerate(ax.flat):
             image_to_eval_fn = grayscale_list[ind]
             image_to_eval = Image.open(os.path.join(image_to_eval_fn)).convert('RGB')
             a.imshow(image_to_eval)
             a.axis('off')
-        plt.tight_layout()
+        if len(grayscale_list) // 10:
+            plt.tight_layout()
         plt.show()
     
     def remove_grayscale(self):
@@ -232,10 +238,10 @@ def delete_duplicates(dictionary_of_duplicates: dict):
                 except FileNotFoundError:
                     continue
 
-def is_grayscale(img_path: str, threshold: float = 0.01):
+def is_grayscale(img_path: str, threshold: float = GRAYSCALE_THRESHOLD):
     img = Image.open(img_path)
 
-    ### splitting b,g,r channels
+    # separating channels
     channels = img.split()
     if len(channels) == 4:
         r, g, b, a = channels
@@ -251,15 +257,15 @@ def is_grayscale(img_path: str, threshold: float = 0.01):
         # Is grayscale
         return True
 
-    ### getting differences between per-channel pixels
+    # Calculating summed differences of pixels in each channel
     r_g = np.sum(np.abs(r - g))
     r_b = np.sum(np.abs(r - b))
     g_b = np.sum(np.abs(g - b))
 
-    ### summing differences in channels
+    # summing differences across all channels
     diff_sum = np.sum(r_g + r_b + g_b)
 
-    ### finding ratio of diff_sum with respect to size of image
+    # finding ratio based on size of image
     ratio = diff_sum / get_num_pixels(img)
     if ratio > threshold:
         return False
